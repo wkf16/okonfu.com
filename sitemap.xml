@@ -2,35 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//aseURL/posts/markdown-syntax/</loc>
+    <loc>https://okonfu.com/posts/markdown-syntax/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//aseURL/</loc>
+    <loc>https://okonfu.com/posts/first_post/</loc>
     <lastmod>2024-10-01T01:19:37+08:00</lastmod>
   </url><url>
-    <loc>//aseURL/posts/</loc>
+    <loc>https://okonfu.com/</loc>
     <lastmod>2024-10-01T01:19:37+08:00</lastmod>
   </url><url>
-    <loc>//aseURL/tags/css/</loc>
+    <loc>https://okonfu.com/posts/</loc>
+    <lastmod>2024-10-01T01:19:37+08:00</lastmod>
+  </url><url>
+    <loc>https://okonfu.com/tags/css/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//aseURL/tags/html/</loc>
+    <loc>https://okonfu.com/tags/html/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//aseURL/tags/markdown/</loc>
+    <loc>https://okonfu.com/tags/markdown/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//aseURL/tags/</loc>
+    <loc>https://okonfu.com/tags/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//aseURL/cv/bludhaven/</loc>
+    <loc>https://okonfu.com/cv/bludhaven/</loc>
   </url><url>
-    <loc>//aseURL/categories/</loc>
+    <loc>https://okonfu.com/categories/</loc>
   </url><url>
-    <loc>//aseURL/cv/</loc>
+    <loc>https://okonfu.com/cv/</loc>
   </url><url>
-    <loc>//aseURL/cv/hydra/</loc>
+    <loc>https://okonfu.com/cv/hydra/</loc>
   </url><url>
-    <loc>//aseURL/cv/tatooine/</loc>
+    <loc>https://okonfu.com/cv/tatooine/</loc>
   </url>
 </urlset>

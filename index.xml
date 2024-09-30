@@ -2,38 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>okonfu</title>
-    <link>//aseURL/</link>
+    <link>https://okonfu.com/</link>
     <description>Recent content on okonfu</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 19 Jun 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//aseURL/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Oct 2024 01:19:37 +0800</lastBuildDate>
+    <atom:link href="https://okonfu.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Markdown Syntax Guide</title>
-      <link>//aseURL/posts/markdown-syntax/</link>
+      <link>https://okonfu.com/posts/markdown-syntax/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>//aseURL/posts/markdown-syntax/</guid>
+      <guid>https://okonfu.com/posts/markdown-syntax/</guid>
       <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>First_post</title>
+      <link>https://okonfu.com/posts/first_post/</link>
+      <pubDate>Tue, 01 Oct 2024 01:19:37 +0800</pubDate>
+      <guid>https://okonfu.com/posts/first_post/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Blüdhaven</title>
-      <link>//aseURL/cv/bludhaven/</link>
+      <link>https://okonfu.com/cv/bludhaven/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>//aseURL/cv/bludhaven/</guid>
+      <guid>https://okonfu.com/cv/bludhaven/</guid>
       <description>&lt;h3 id=&#34;history&#34;&gt;History&lt;/h3&gt;&#xA;&lt;p&gt;Blüdhaven was a former whaling town, which was officially incorporated as a &amp;ldquo;Commonwealth&amp;rdquo; in 1912. The town had a generally poor socio-economic populace, owing in part to failed efforts to transform itself into a manufacturing and shipping center.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hydra</title>
-      <link>//aseURL/cv/hydra/</link>
+      <link>https://okonfu.com/cv/hydra/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>//aseURL/cv/hydra/</guid>
+      <guid>https://okonfu.com/cv/hydra/</guid>
       <description>&lt;h3 id=&#34;motto&#34;&gt;Motto&lt;/h3&gt;&#xA;&lt;p&gt;Cut off one head and two will take their place&lt;/p&gt;</description>
     </item>
     <item>
       <title>Tatooine</title>
-      <link>//aseURL/cv/tatooine/</link>
+      <link>https://okonfu.com/cv/tatooine/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>//aseURL/cv/tatooine/</guid>
+      <guid>https://okonfu.com/cv/tatooine/</guid>
       <description>&lt;h3 id=&#34;a-long-time-ago-in-a-galaxy-far-far-away&#34;&gt;A long time ago in a galaxy far, far away&amp;hellip;.&lt;/h3&gt;&#xA;&lt;p&gt;A project was planned, but never completed&lt;/p&gt;</description>
     </item>
   </channel>

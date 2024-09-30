@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on okonfu</title>
-    <link>//aseURL/tags/</link>
+    <link>https://okonfu.com/tags/</link>
     <description>Recent content in Tags on okonfu</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 19 Jun 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//aseURL/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://okonfu.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Css</title>
-      <link>//aseURL/tags/css/</link>
+      <link>https://okonfu.com/tags/css/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>//aseURL/tags/css/</guid>
+      <guid>https://okonfu.com/tags/css/</guid>
       <description></description>
     </item>
     <item>
       <title>Html</title>
-      <link>//aseURL/tags/html/</link>
+      <link>https://okonfu.com/tags/html/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>//aseURL/tags/html/</guid>
+      <guid>https://okonfu.com/tags/html/</guid>
       <description></description>
     </item>
     <item>
       <title>Markdown</title>
-      <link>//aseURL/tags/markdown/</link>
+      <link>https://okonfu.com/tags/markdown/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>//aseURL/tags/markdown/</guid>
+      <guid>https://okonfu.com/tags/markdown/</guid>
       <description></description>
     </item>
   </channel>
