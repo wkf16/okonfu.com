@@ -2,38 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/markdown-syntax/</loc>
+    <loc>//aseURL/posts/markdown-syntax/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/first_post/</loc>
+    <loc>//aseURL/</loc>
     <lastmod>2024-10-01T01:19:37+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>//aseURL/posts/</loc>
     <lastmod>2024-10-01T01:19:37+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-10-01T01:19:37+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/css/</loc>
+    <loc>//aseURL/tags/css/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/html/</loc>
+    <loc>//aseURL/tags/html/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/markdown/</loc>
+    <loc>//aseURL/tags/markdown/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>//aseURL/tags/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/cv/bludhaven/</loc>
+    <loc>//aseURL/cv/bludhaven/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>//aseURL/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/cv/</loc>
+    <loc>//aseURL/cv/</loc>
   </url><url>
-    <loc>http://localhost:1313/cv/hydra/</loc>
+    <loc>//aseURL/cv/hydra/</loc>
   </url><url>
-    <loc>http://localhost:1313/cv/tatooine/</loc>
+    <loc>//aseURL/cv/tatooine/</loc>
   </url>
 </urlset>
