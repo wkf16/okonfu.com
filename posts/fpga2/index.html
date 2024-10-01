@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script>
+<html lang="en"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,7 +25,7 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 状态寄存器，其由一 …">
     <meta name="keywords" content='blog, gokarna, hugo, fpga'>
 
-    <meta property="og:url" content="https://okonfu.com/posts/fpga2/">
+    <meta property="og:url" content="http://localhost:1313/posts/fpga2/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="FPGA学习笔记2">
     <meta property="og:description" content="FPGA_DDR3 1.编程结构：状态机FSM 在verilog实现顺序逻辑。
@@ -33,8 +33,8 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 状态的改变只发生在时钟的跳沿。
 Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的输出只取决于当前状态。 状态是否改变、如何改变，取决于组合逻辑 F 的输出。
 状态寄存器，其由一 …">
-    <meta property="og:image" content="https://okonfu.com/images/147919460.jpg">
-    <meta property="og:image:secure_url" content="https://okonfu.com/images/147919460.jpg">
+    <meta property="og:image" content="http://localhost:1313/images/147919460.jpg">
+    <meta property="og:image:secure_url" content="http://localhost:1313/images/147919460.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="FPGA学习笔记2">
@@ -43,12 +43,12 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 状态的改变只发生在时钟的跳沿。
 Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的输出只取决于当前状态。 状态是否改变、如何改变，取决于组合逻辑 F 的输出。
 状态寄存器，其由一 …">
-    <meta property="twitter:domain" content="https://okonfu.com/posts/fpga2/">
-    <meta property="twitter:url" content="https://okonfu.com/posts/fpga2/">
-    <meta name="twitter:image" content="https://okonfu.com/images/147919460.jpg">
+    <meta property="twitter:domain" content="http://localhost:1313/posts/fpga2/">
+    <meta property="twitter:url" content="http://localhost:1313/posts/fpga2/">
+    <meta name="twitter:image" content="http://localhost:1313/images/147919460.jpg">
 
     
-    <link rel="canonical" href="https://okonfu.com/posts/fpga2/">
+    <link rel="canonical" href="http://localhost:1313/posts/fpga2/">
 
     
     <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
@@ -94,32 +94,32 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 
         
         <div class="avatar">
-            <a href="https://okonfu.com/">
+            <a href="http://localhost:1313/">
                 <img src='/images/147919460.jpg' alt="avatar">
             </a>
         </div>
         
 
         <div class="nav-title">
-            <a class="nav-brand" href="https://okonfu.com/">okonfu</a>
+            <a class="nav-brand" href="http://localhost:1313/">okonfu</a>
         </div>
 
         <div class="nav-links">
             
             <div class="nav-link">
-                <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+                <a href="http://localhost:1313/" ><span data-feather='home'></span> Home </a>
             </div>
             
             <div class="nav-link">
-                <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+                <a href="http://localhost:1313/posts/" ><span data-feather='book'></span> Posts </a>
             </div>
             
             <div class="nav-link">
-                <a href="https://okonfu.com/cv/" ><span data-feather='user'></span> CV </a>
+                <a href="http://localhost:1313/cv/" ><span data-feather='user'></span> CV </a>
             </div>
             
             <div class="nav-link">
-                <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+                <a href="http://localhost:1313/tags/" ><span data-feather='tag'></span> Tags </a>
             </div>
             
             <div class="nav-link">
@@ -146,19 +146,19 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
             <ul class="nav-hamburger-list visibility-hidden">
                 
                 <li class="nav-item">
-                    <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+                    <a href="http://localhost:1313/" ><span data-feather='home'></span> Home </a>
                 </li>
                 
                 <li class="nav-item">
-                    <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+                    <a href="http://localhost:1313/posts/" ><span data-feather='book'></span> Posts </a>
                 </li>
                 
                 <li class="nav-item">
-                    <a href="https://okonfu.com/cv/" ><span data-feather='user'></span> CV </a>
+                    <a href="http://localhost:1313/cv/" ><span data-feather='user'></span> CV </a>
                 </li>
                 
                 <li class="nav-item">
-                    <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+                    <a href="http://localhost:1313/tags/" ><span data-feather='tag'></span> Tags </a>
                 </li>
                 
                 <li class="nav-item">
@@ -207,7 +207,7 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
         <ul class="post-tags">
           
            
-             <li class="post-tag"><a href="https://okonfu.com/tags/fpga">fpga</a></li>
+             <li class="post-tag"><a href="http://localhost:1313/tags/fpga">fpga</a></li>
            
          
         </ul>
@@ -267,7 +267,7 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 </ul>
 <p><img src="image-20240622181520444.png" alt="输出时序"></p>
 <h2 id="2fifo">2.FIFO</h2>
-<img src="\image-20240622192553805.png" alt="image-20240622192553805" style="zoom: 50%;" />
+<img src="image-20240622192553805.png" alt="image-20240622192553805" style="zoom: 50%;" />
 <ul>
 <li>
 <p>先入先出缓存器</p>
@@ -279,7 +279,7 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 <p>可异步时钟时做缓存</p>
 </li>
 </ul>
-<img src="\image-20240622201204501.png" alt="image-20240622201204501" style="zoom:25%;" />
+<img src="image-20240622201204501.png" alt="image-20240622201204501" style="zoom:25%;" />
 <h2 id="3ddr3入门">3.DDR3入门</h2>
 <h3 id="31从sdram到ddr3">3.1从SDRAM到DDR3</h3>
 <img src="image-20240622222139771.png" alt="image-20240622222139771" style="zoom:33%;" />
