@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>ROS2基础</title>
+    <meta name="description" content="ROS2基础 掌握ROS2中节点概念即相关指令 掌握ROS2中工作空间的相关概念 掌握colcon编译指令来构建一个包 学会通过命令行安装软件和ROS2相关的包 了解面向对象编程OOP的基本概念 学会使用Python编写一个ROS2的节点 学会使用C&#43;&#43;编写一个ROS2的节点 1. ROS2节点 1-1 …">
+    <meta name="keywords" content='blog, gokarna, hugo, ROS'>
+
+    <meta property="og:url" content="https://okonfu.com/posts/ros/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ROS2基础">
+    <meta property="og:description" content="ROS2基础 掌握ROS2中节点概念即相关指令 掌握ROS2中工作空间的相关概念 掌握colcon编译指令来构建一个包 学会通过命令行安装软件和ROS2相关的包 了解面向对象编程OOP的基本概念 学会使用Python编写一个ROS2的节点 学会使用C&#43;&#43;编写一个ROS2的节点 1. ROS2节点 1-1 …">
+    <meta property="og:image" content="https://okonfu.com/images/147919460.jpg">
+    <meta property="og:image:secure_url" content="https://okonfu.com/images/147919460.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ROS2基础">
+    <meta name="twitter:description" content="ROS2基础 掌握ROS2中节点概念即相关指令 掌握ROS2中工作空间的相关概念 掌握colcon编译指令来构建一个包 学会通过命令行安装软件和ROS2相关的包 了解面向对象编程OOP的基本概念 学会使用Python编写一个ROS2的节点 学会使用C&#43;&#43;编写一个ROS2的节点 1. ROS2节点 1-1 …">
+    <meta property="twitter:domain" content="https://okonfu.com/posts/ros/">
+    <meta property="twitter:url" content="https://okonfu.com/posts/ros/">
+    <meta name="twitter:image" content="https://okonfu.com/images/147919460.jpg">
+
+    
+    <link rel="canonical" href="https://okonfu.com/posts/ros/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.893af8dd3b65bd0ffe90e7af33847bd6dc9180b8fa6d6659a212a6f4b62d3e01.js" integrity="sha256-iTr43TtlvQ/&#43;kOevM4R71tyRgLj6bWZZohKm9LYtPgE="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://okonfu.com/">
+                <img src='/images/147919460.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://okonfu.com/">okonfu</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/cv/" ><span data-feather='code'></span> CV </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/wkf16" ><span data-feather='github'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
+                <a>
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/cv/" ><span data-feather='code'></span> CV </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/wkf16" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a>
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>ROS2基础</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle"></small>
+	
+
+	
+          <p class="post-date">September 24, 2023
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://okonfu.com/tags/ros">ROS</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="ros2基础">ROS2基础</h1>
+<ul>
+<li><input disabled="" type="checkbox"> 掌握ROS2中节点概念即相关指令</li>
+<li><input disabled="" type="checkbox"> 掌握ROS2中工作空间的相关概念</li>
+<li><input disabled="" type="checkbox"> 掌握colcon编译指令来构建一个包</li>
+<li><input disabled="" type="checkbox"> 学会通过命令行安装软件和ROS2相关的包</li>
+<li><input checked="" disabled="" type="checkbox"> 了解面向对象编程OOP的基本概念</li>
+<li><input disabled="" type="checkbox"> 学会使用Python编写一个ROS2的节点</li>
+<li><input disabled="" type="checkbox"> 学会使用C++编写一个ROS2的节点</li>
+</ul>
+<h2 id="1-ros2节点">1. ROS2节点</h2>
+<h3 id="1-1什么是节点">1-1什么是节点</h3>
+<p>ROS2中的每一个节点也是只负责一个<strong>单独</strong>的模块化的功能，每个节点都是一个封装了特定功能或任务的独立实体。<strong>节点通常是一个类的实例</strong></p>
+<h3 id="1-2节点的职责">1-2节点的职责</h3>
+<ul>
+<li><strong>发布消息</strong>：向特定的话题<strong>发送</strong>数据。</li>
+<li><strong>订阅消息</strong>：从特定的话题<strong>接收</strong>数据。</li>
+<li><strong>提供服务</strong>：<strong>响应</strong>其他节点的请求。</li>
+<li><strong>调用服务</strong>：向其他节点发送<strong>请求并等待</strong>响应。</li>
+<li><strong>行为</strong>：一种更复杂的服务模式，通常用于需要多步骤和可中断操作的情况。</li>
+</ul>
+<h3 id="1-3节点之间如何交互">1-3节点之间如何交互？</h3>
+<ul>
+<li>
+<p><a href="#%E5%8F%91%E5%B8%83%E5%92%8C%E8%AE%A2%E9%98%85%E6%B6%88%E6%81%AF(topics)">话题-topics</a></p>
+</li>
+<li>
+<p><a href="#%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF(services)">服务-services</a></p>
+</li>
+<li>
+<p>动作-Action</p>
+</li>
+<li>
+<p>参数-parameters</p>
+<p><img src="https://fishros.com/d2lros2foxy/chapt3/3.1ROS2%E8%8A%82%E7%82%B9%E4%BB%8B%E7%BB%8D/imgs/Nodes-TopicandService.gif" alt="Nodes-TopicandService"></p>
+</li>
+</ul>
+<h3 id="1-4话题服务topicsservices">1-4话题/服务(Topics/Services)</h3>
+<h4 id="1-4-1发布和订阅消息topics">1-4-1发布和订阅消息(topics)</h4>
+<p>在节点中，你通常会有一个或多个发布器（Publisher）和订阅器（Subscriber）。发布器用于向特定的话题发送消息，而订阅器则用于从特定的话题接收消息。</p>
+<p>是一种异步通信方式。发布者发布消息到某个话题，所有订阅了该话题的订阅者都会收到这个消息。但发布者不知道（也不关心）谁会接收这个消息。</p>
+<h5 id="发布消息">发布消息</h5>
+<ol>
+<li>
+<p><strong>创建发布器</strong>：在节点的构造函数中，我们使用 <u><code>create_publisher</code></u> 方法创建一个发布器。这个方法需要两个参数：话题名（&ldquo;my_topic&rdquo;）和队列大小（10）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>publisher_ <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>create_publisher<span style="color:#f92672">&lt;</span>std_msgs<span style="color:#f92672">::</span>msg<span style="color:#f92672">::</span>String<span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#34;my_topic&#34;</span>, <span style="color:#ae81ff">10</span>);
+</span></span></code></pre></div></li>
+<li>
+<p><strong>创建定时器</strong>：定时器用于周期性地触发消息发布事件。在这个例子中，我们设置了一个每 500 毫秒触发一次的定时器。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>timer_ <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>create_wall_timer(
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>chrono<span style="color:#f92672">::</span>milliseconds(<span style="color:#ae81ff">500</span>),
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>bind(<span style="color:#f92672">&amp;</span>MyPublisherNode<span style="color:#f92672">::</span>publishMessage, <span style="color:#66d9ef">this</span>)
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div></li>
+<li>
+<p><strong>发布消息</strong>：在 publishMessage 函数中，我们创建一个 std_msgs::msg::String 类型的消息，并通过 publish 方法发送它。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> message <span style="color:#f92672">=</span> std_msgs<span style="color:#f92672">::</span>msg<span style="color:#f92672">::</span>String();
+</span></span><span style="display:flex;"><span>message.data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, ROS 2!&#34;</span>;
+</span></span><span style="display:flex;"><span>publisher_<span style="color:#f92672">-&gt;</span>publish(message);
+</span></span></code></pre></div></li>
+</ol>
+<h5 id="订阅消息">订阅消息</h5>
+<ol>
+<li>
+<p><strong>创建订阅器</strong>：与发布器类似，我们在节点的构造函数中使用 create_subscription 方法创建一个订阅器。这个方法同样需要话题名、队列大小和一个回调函数作为参数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>subscriber_ <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>create_subscription<span style="color:#f92672">&lt;</span>std_msgs<span style="color:#f92672">::</span>msg<span style="color:#f92672">::</span>String<span style="color:#f92672">&gt;</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;my_topic&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>bind(<span style="color:#f92672">&amp;</span>MySubscriberNode<span style="color:#f92672">::</span>messageCallback, <span style="color:#66d9ef">this</span>, std<span style="color:#f92672">::</span>placeholders<span style="color:#f92672">::</span>_1)
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div></li>
+<li>
+<p><strong>处理消息</strong>：每当从 &ldquo;my_topic&rdquo; 话题收到新消息时，messageCallback 函数就会被触发。在这个函数中，我们简单地输出接收到的消息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">messageCallback</span>(<span style="color:#66d9ef">const</span> std_msgs<span style="color:#f92672">::</span>msg<span style="color:#f92672">::</span>String<span style="color:#f92672">::</span>SharedPtr msg)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  RCLCPP_INFO(<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>get_logger(), <span style="color:#e6db74">&#34;Received message: %s&#34;</span>, msg<span style="color:#f92672">-&gt;</span>data.c_str());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ol>
+<h4 id="1-4-2服务和客户端services">1-4-2服务和客户端(services)</h4>
+<p>服务（Services）和客户端（Clients）提供了一种同步通信机制，使一个节点能向另一个节点发送请求并接收响应。在 ROS 2 中，服务和客户端<strong>可以是同步的也可以是异步</strong>的。在服务和客户端的交互中，通常有<strong>一个</strong>“服务提供者”（Service Provider）和一个或<strong>多个</strong>“服务用户”（Service Client）。</p>
+<p>是更像远程过程调用（RPC）的通信方式，通常是同步的（也可以是异步的）。客户端发送一个<strong>请求</strong>到服务，服务处理这个请求并返回一个<strong>响应</strong>给客户端。</p>
+<h5 id="创建服务">创建服务</h5>
+<ol>
+<li>
+<p><strong>定义服务</strong>：在节点的构造函数中，我们使用 <u><code>create_service</code></u> 方法定义一个服务。这个方法需要两个参数：服务名（&ldquo;add_two_ints&rdquo;）和一个回调函数。</p>
+<pre tabindex="0"><code>cppCopy codeservice_ = this-&gt;create_service&lt;example_interfaces::srv::AddTwoInts&gt;(
+  &#34;add_two_ints&#34;,
+  std::bind(&amp;MyServiceNode::handleService, this, std::placeholders::_1, std::placeholders::_2)
+);
+</code></pre></li>
+<li>
+<p><strong>处理请求</strong>：在定义的回调函数 <code>handleService</code> 中，我们处理客户端发送的请求并返回一个响应。</p>
+<pre tabindex="0"><code>cppCopy codevoid handleService(
+  const std::shared_ptr&lt;example_interfaces::srv::AddTwoInts::Request&gt; request,
+  std::shared_ptr&lt;example_interfaces::srv::AddTwoInts::Response&gt; response)
+{
+  response-&gt;sum = request-&gt;a + request-&gt;b;
+}
+</code></pre></li>
+</ol>
+<h5 id="创建客户端">创建客户端</h5>
+<ol>
+<li>
+<p><strong>定义客户端</strong>：在节点的构造函数中，我们使用 <u><code>create_client</code></u> 方法定义一个客户端。这个方法需要一个参数：服务名（&ldquo;add_two_ints&rdquo;）。</p>
+<pre tabindex="0"><code>cppCopy code
+client_ = this-&gt;create_client&lt;example_interfaces::srv::AddTwoInts&gt;(&#34;add_two_ints&#34;);
+</code></pre></li>
+<li>
+<p><strong>发送请求</strong>：在节点的某个函数（比如 <code>send_request</code>）中，我们创建一个请求并使用客户端的 <code>async_send_request</code> 方法发送它。</p>
+<pre tabindex="0"><code>cppCopy codevoid send_request(int a, int b)
+{
+  auto request = std::make_shared&lt;example_interfaces::srv::AddTwoInts::Request&gt;();
+  request-&gt;a = a;
+  request-&gt;b = b;
+  auto result = client_-&gt;async_send_request(request);
+  // Handle the result...
+}
+</code></pre></li>
+</ol>
+<h4 id="1-4-3pubsub与serviceclient区别">1-4-3(Pub/Sub)与**(Service/Client)**区别</h4>
+<h5 id="通信模式">通信模式：</h5>
+<ul>
+<li><em>发布/订阅（Pub/Sub）:</em> 是一种异步通信方式。发布者发布消息到某个话题，所有订阅了该话题的订阅者都会收到这个消息。但发布者不知道（也不关心）谁会接收这个消息。</li>
+<li><em>服务/客户端（Service/Client）:</em> 是更像远程过程调用（RPC）的通信方式，通常是同步的（也可以是异步的）。客户端发送一个请求到服务，服务处理这个请求并返回一个响应给客户端。</li>
+</ul>
+<h5 id="数据流">数据流：</h5>
+<ul>
+<li><em>发布/订阅（Pub/Sub）:</em> 数据流是<strong>单向</strong>的。发布者发布消息，订阅者接收消息。</li>
+<li><em>服务/客户端（Service/Client）:</em> 数据流是<strong>双向</strong>的。客户端发送<em>请求</em>，服务接收请求并发送<em>响应</em>。</li>
+</ul>
+<h5 id="实时性和可靠性">实时性和可靠性：</h5>
+<ul>
+<li><em>发布/订阅（Pub/Sub）</em>: 通常用于需要高频或实时更新的情况，如传感器数据的<strong>实时流</strong>。</li>
+<li><em>服务/客户端（Service/Client）</em>: 通常用于<strong>请求/响应式</strong>的<em>交互</em>，这样的交互通常不需要高频率，但需要更高的<strong>可靠性</strong>。</li>
+</ul>
+<h5 id="用途">用途：</h5>
+<ul>
+<li><em>发布/订阅（Pub/Sub）</em>: 更适用于<strong>数据的广播</strong>，例如，一个传感器节点发布温度数据，多个其他节点（如数据记录节点、监控节点等）可能需要这些数据。</li>
+<li><em>服务/客户端（Service/Client）</em>: 更适用于<strong>一对一</strong>的交互，例如，一个节点请求另一个节点进行某种计算并返回结果。</li>
+</ul>
+<h5 id="复杂性">复杂性：</h5>
+<ul>
+<li>
+<p><em>发布/订阅（Pub/Sub）</em>: 相对简单，因为你不需要关心谁会接收或处理消息。</p>
+</li>
+<li>
+<p><em>服务/客户端（Service/Client）</em>: 可能更复杂一些，因为你需要处理请求的接收、处理和响应。</p>
+</li>
+</ul>
+<h4 id="1-4-4完全限定名">1-4-4完全限定名</h4>
+<p>如 <em>rclcpp::Subscription&lt;std_msgs::msg::String&gt;::SharedPtr subscriber_</em></p>
+<ol>
+<li><strong>命名空间（Namespace）</strong>: 诸如 <code>rclcpp</code> 或 <code>std_msgs</code> 这样的命名空间通常用于组织代码。当你看到 <code>::</code> 符号，可以认为你正在进入一个特定的“区域”或“分类”，在这里你会找到特定的类、函数或变量。
+<ul>
+<li>例如：<code>rclcpp::</code> 表示我们正在使用 ROS 2 的 C++ 客户端库。</li>
+</ul>
+</li>
+<li><strong>类名（Class）</strong>: <code>Subscription</code> 和 <code>String</code> 这样的单词通常是类名。这告诉你这段代码与何种对象类型有关。
+<ul>
+<li>例如：<code>Subscription</code> 表示这是一个用于订阅话题的对象。</li>
+</ul>
+</li>
+<li><strong>模板参数（Template Parameters）</strong>: 尖括号 <code>&lt; &gt;</code> 中的内容是模板参数，它们用于指定一个通用类的具体类型。
+<ul>
+<li>例如：<code>&lt;std_msgs::msg::String&gt;</code> 表示这个 <code>Subscription</code> 是专门用于订阅 <code>String</code> 类型消息的。</li>
+</ul>
+</li>
+<li><strong>类型修饰符（Type Modifiers）</strong>: 诸如 <code>SharedPtr</code> 这样的单词通常用于指定变量的额外属性或行为。
+<ul>
+<li>例如：<code>SharedPtr</code> 表示这是一个智能指针，它会自动管理内存。</li>
+</ul>
+</li>
+</ol>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
+
+    
+    
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ros2基础">ROS2基础</a>
+      <ul>
+        <li><a href="#1-ros2节点">1. ROS2节点</a>
+          <ul>
+            <li><a href="#1-1什么是节点">1-1什么是节点</a></li>
+            <li><a href="#1-2节点的职责">1-2节点的职责</a></li>
+            <li><a href="#1-3节点之间如何交互">1-3节点之间如何交互？</a></li>
+            <li><a href="#1-4话题服务topicsservices">1-4话题/服务(Topics/Services)</a>
+              <ul>
+                <li><a href="#1-4-1发布和订阅消息topics">1-4-1发布和订阅消息(topics)</a></li>
+                <li><a href="#1-4-2服务和客户端services">1-4-2服务和客户端(services)</a></li>
+                <li><a href="#1-4-3pubsub与serviceclient区别">1-4-3(Pub/Sub)与**(Service/Client)**区别</a></li>
+                <li><a href="#1-4-4完全限定名">1-4-4完全限定名</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+
+    
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2023 The Marauders</span>
+    
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>

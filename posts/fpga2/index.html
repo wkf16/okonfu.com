@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>FPGA学习笔记2</title>
+    <meta name="description" content="FPGA_DDR3 1.编程结构：状态机FSM 在verilog实现顺序逻辑。
+在有限个状态之间按一定规律转换的时序电路。
+状态的改变只发生在时钟的跳沿。
+Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的输出只取决于当前状态。 状态是否改变、如何改变，取决于组合逻辑 F 的输出。
+状态寄存器，其由一 …">
+    <meta name="keywords" content='blog, gokarna, hugo, fpga'>
+
+    <meta property="og:url" content="https://okonfu.com/posts/fpga2/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="FPGA学习笔记2">
+    <meta property="og:description" content="FPGA_DDR3 1.编程结构：状态机FSM 在verilog实现顺序逻辑。
+在有限个状态之间按一定规律转换的时序电路。
+状态的改变只发生在时钟的跳沿。
+Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的输出只取决于当前状态。 状态是否改变、如何改变，取决于组合逻辑 F 的输出。
+状态寄存器，其由一 …">
+    <meta property="og:image" content="https://okonfu.com/images/147919460.jpg">
+    <meta property="og:image:secure_url" content="https://okonfu.com/images/147919460.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FPGA学习笔记2">
+    <meta name="twitter:description" content="FPGA_DDR3 1.编程结构：状态机FSM 在verilog实现顺序逻辑。
+在有限个状态之间按一定规律转换的时序电路。
+状态的改变只发生在时钟的跳沿。
+Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的输出只取决于当前状态。 状态是否改变、如何改变，取决于组合逻辑 F 的输出。
+状态寄存器，其由一 …">
+    <meta property="twitter:domain" content="https://okonfu.com/posts/fpga2/">
+    <meta property="twitter:url" content="https://okonfu.com/posts/fpga2/">
+    <meta name="twitter:image" content="https://okonfu.com/images/147919460.jpg">
+
+    
+    <link rel="canonical" href="https://okonfu.com/posts/fpga2/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.893af8dd3b65bd0ffe90e7af33847bd6dc9180b8fa6d6659a212a6f4b62d3e01.js" integrity="sha256-iTr43TtlvQ/&#43;kOevM4R71tyRgLj6bWZZohKm9LYtPgE="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://okonfu.com/">
+                <img src='/images/147919460.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://okonfu.com/">okonfu</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/cv/" ><span data-feather='code'></span> CV </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/wkf16" ><span data-feather='github'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
+                <a>
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/cv/" ><span data-feather='code'></span> CV </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/wkf16" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a>
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>FPGA学习笔记2</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle"></small>
+	
+
+	
+          <p class="post-date">June 23, 2024
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://okonfu.com/tags/fpga">fpga</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="fpga_ddr3">FPGA_DDR3</h1>
+<h2 id="1编程结构状态机fsm">1.编程结构：状态机FSM</h2>
+<p>在verilog实现顺序逻辑。</p>
+<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622163956622.png" alt="image-20240622163956622" style="zoom: 25%;" />
+<p>在<strong>有限个状态</strong>之间按一定规律转换的<strong>时序电路</strong>。</p>
+<p>状态的改变只发生在时钟的跳沿。</p>
+<ol>
+<li>Mealy状态机：输出由<strong>当前状态</strong>和<strong>输入</strong>决定。<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622164806158.png" alt="image-20240622164806158" style="zoom:33%;" /></li>
+<li>Moore 状态机：的输出只取决于当前状态。<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622164959152.png" alt="image-20240622164959152" style="zoom:33%;" /></li>
+</ol>
+<ul>
+<li>
+<p>状态是否改变、如何改变，取决于组合逻辑 F 的输出。</p>
+</li>
+<li>
+<p>状态寄存器，其由一组触发器组成，用来记忆状态机当前所处的状态。</p>
+</li>
+<li>
+<p>状态机的输出是由输出组合逻辑 G 提供的。</p>
+</li>
+</ul>
+<h3 id="11状态机设计四段论">1.1状态机设计四段论</h3>
+<ul>
+<li>状态空间定义
+<ul>
+<li>定义所有状态，对状态进行编码。<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622165404927.png" alt="image-20240622165404927" style="zoom: 50%;" /></li>
+<li>定义状态寄存器，位宽与状态保持一致。</li>
+</ul>
+</li>
+<li>状态跳转（时序逻辑）使用<strong>非阻塞</strong>赋值
+<ul>
+<li>复位：给当前状态初始值</li>
+<li>下一个状态赋值给当前状态。</li>
+</ul>
+</li>
+<li>下个状态判断（组合逻辑F）使用<strong>阻塞</strong>赋值
+<ul>
+<li>敏感信号为所有右边表达式中的<strong>变量</strong>以及if、case语句中的<strong>变量</strong>。（或使用*号）<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622170211454.png" alt="image-20240622170211454" style="zoom: 50%;" /></li>
+<li><strong>case语句</strong>记得 <strong>default</strong></li>
+</ul>
+</li>
+<li>各种状态下的动作</li>
+</ul>
+<h3 id="12三段式状态机">1.2三段式状态机</h3>
+<p>在输出前加入时序控制。</p>
+<p><img src="C:%5CUsers%5Ca1606%5CDocuments%5C%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%5C%E7%94%B5%E8%B5%9B%E5%AE%9E%E8%B7%B5%E8%AF%BE%5CFPGA%5Cimage-20240622181144947.png" alt="image-20240622181144947"></p>
+<ul>
+<li>可以去除组合逻辑输出毛刺</li>
+<li>有效进行时序计算和约束</li>
+<li>易于数据对其</li>
+</ul>
+<p><img src="C:%5CUsers%5Ca1606%5CDocuments%5C%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%5C%E7%94%B5%E8%B5%9B%E5%AE%9E%E8%B7%B5%E8%AF%BE%5CFPGA%5Cimage-20240622181520444.png" alt="输出时序"></p>
+<h2 id="2fifo">2.FIFO</h2>
+<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622192553805.png" alt="image-20240622192553805" style="zoom: 50%;" />
+<ul>
+<li>
+<p>先入先出缓存器</p>
+</li>
+<li>
+<p>写满时写等待，读满时读等待</p>
+</li>
+<li>
+<p>可异步时钟时做缓存</p>
+</li>
+</ul>
+<img src="C:\Users\a1606\AppData\Roaming\Typora\typora-user-images\image-20240622201204501.png" alt="image-20240622201204501" style="zoom:25%;" />
+<h2 id="3ddr3入门">3.DDR3入门</h2>
+<h3 id="31从sdram到ddr3">3.1从SDRAM到DDR3</h3>
+<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622222139771.png" alt="image-20240622222139771" style="zoom:33%;" />
+<p>SDRAM同步动态<strong>随机</strong>存储器，<strong>需要刷新</strong>保证数据不丢失。易失。</p>
+<ul>
+<li>物理Bank：CPU位宽</li>
+<li>逻辑bank(L-Bank)：独立可寻址的片区</li>
+<li>芯片位宽：每一片SDRAM本身的位宽，每一个逻辑bank内的数据位宽</li>
+</ul>
+<p>需要：n片颗粒总位宽(n*芯片位宽) = 物理bank</p>
+<p>由：L-Bank，CAS列选择，RAS行选择，对第i(L-Bank)片寻址</p>
+<h4 id="311sdram操作指令">3.1.1SDRAM操作指令</h4>
+<ul>
+<li>ACTIVE 激活行Row，RAS</li>
+<li>READ/WRITE 选择列读写Column，CAS</li>
+<li>BURST TERMINATE 中断突发模式读写</li>
+<li>PERCHAGRE 预充电：读下一行前需要预充电</li>
+<li>REFRESH 刷新：周期性刷新所有bank（A10，CKE决定刷新模式）</li>
+<li>LOAD MODE REG：设置SDRAM的操作参数，如突发长度、延迟类型等</li>
+<li>DQM：拉高屏蔽读写数据（读要在延迟时间之后读取）</li>
+</ul>
+<p>Notes：写入数据无延迟，读数据有延迟（<strong>CL</strong>）</p>
+<h4 id="312ddr-sdramddr1ddr2">3.1.2DDR SDRAM（DDR1/DDR2）</h4>
+<h5 id="3121ddr1">3.1.2.1DDR1</h5>
+<p><em><u>Double Data Rate Synchronous Dynamic Random-Access Memory</u></em></p>
+<p>使用<strong>差分时钟</strong>，DDR SDRAM通过在每个时钟信号的上升沿和下降沿发送数据，从而实现数据传输速率的翻倍。</p>
+<p>**新增：**CK#，DQS（读方产生给写方）</p>
+<h5 id="3121ddr2">3.1.2.1DDR2</h5>
+<p>新增：ODT<strong>片内终结</strong>，内置一个电压岛，吸收信号反射。加倍IO时钟，翻倍DDR1。差分DQS。4n数据预取。</p>
+<p><strong>EMRS阶段：<strong>它用于配置DDR2内存的一些额外参数，如</strong>OCD</strong>功能，校准DQS和DQ数据信号的交叉点。</p>
+<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622233213018.png" alt="image-20240622233213018" style="zoom:25%;" />
+<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240623003510787.png" alt="image-20240623003510787" style="zoom: 50%;" />
+<p><strong>前置CAS</strong>行地址到列地址的延迟，允许RAS发送后立即发送CAS，所以新增<strong>AL</strong>（附加潜伏期）</p>
+<ul>
+<li>$t^{AL}$（additive latency）典型的DDR2：AL=tRCD-1</li>
+<li>$t^{CL}$（CAS Latency）列地址选通延迟</li>
+<li>$t^{WL}$（Write Latency）= AL+CL-1</li>
+<li>$t^{RL}$（Read Latency）= AL+CL</li>
+<li>$t^{RCD}$(Row to Column Delay)：行地址到列地址的延迟。</li>
+<li>$t^{RP}$ (Row Precharge Time)：行预充电时间，关闭当前行并准备下一个行访问所需的时间。</li>
+<li>$t^{RAS}$ (Row Active Time)：行激活时间，即行在被关闭（预充电）前必须保持激活的最小时间。</li>
+</ul>
+<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240623002127083.png" alt="image-20240623002127083" style="zoom: 33%;" />
+<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240623002329807.png" alt="image-20240623002329807" style="zoom:33%;" />
+<p>所以内存参数如16-18-18-36，就是CL-tRCD-tRP-tRAS</p>
+<h4 id="313ddr3-sdram">3.1.3DDR3 SDRAM</h4>
+<ul>
+<li><strong>八倍预取</strong>：8n</li>
+<li><strong>突发长度</strong>：通常BL = 8</li>
+<li><strong>寻址时序</strong>：
+<ul>
+<li>AL可选0、CL-1、CL-2</li>
+<li>写入延迟CWD</li>
+</ul>
+</li>
+<li>新增Reset、新增ZQ校准</li>
+</ul>
+<h5 id="3131初始化">3.1.3.1初始化</h5>
+<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240623020826503.png" alt="image-20240623020826503" style="zoom: 50%;" />
+<ol>
+<li>复位信号：低电平200us</li>
+<li>复位信号拉高前CKE至少保持10ns低电平</li>
+<li>复位信号失效之后要等待至少500us才能拉高</li>
+<li>bank+MRS 配置MR0/1/2/3</li>
+</ol>
+<h3 id="32ddr3实战读写测试">3.2DDR3实战读写测试</h3>
+<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240624155028033.png" alt="image-20240624155028033" style="zoom:33%;" />
+<p>好失败啊</p>
+<p>大费周章</p>
+<p>磕了三天，毛用没有，调个ip核写个状态机，毫无意义调试了一天，做了一个毫无意义的装置</p>
+<p>唯一作用就是输入一个数据进ddr3，然后读出来比较一不一样</p>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
+
+    
+    
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#fpga_ddr3">FPGA_DDR3</a>
+      <ul>
+        <li><a href="#1编程结构状态机fsm">1.编程结构：状态机FSM</a>
+          <ul>
+            <li><a href="#11状态机设计四段论">1.1状态机设计四段论</a></li>
+            <li><a href="#12三段式状态机">1.2三段式状态机</a></li>
+          </ul>
+        </li>
+        <li><a href="#2fifo">2.FIFO</a></li>
+        <li><a href="#3ddr3入门">3.DDR3入门</a>
+          <ul>
+            <li><a href="#31从sdram到ddr3">3.1从SDRAM到DDR3</a>
+              <ul>
+                <li><a href="#311sdram操作指令">3.1.1SDRAM操作指令</a></li>
+                <li><a href="#312ddr-sdramddr1ddr2">3.1.2DDR SDRAM（DDR1/DDR2）</a></li>
+                <li><a href="#313ddr3-sdram">3.1.3DDR3 SDRAM</a></li>
+              </ul>
+            </li>
+            <li><a href="#32ddr3实战读写测试">3.2DDR3实战读写测试</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+
+    
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2024 The Marauders</span>
+    
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>

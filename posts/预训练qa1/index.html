@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>预训练Q&amp;A</title>
+    <meta name="description" content="You:
+请你通过几个问题，考核我这节课的知识，修正认知偏差。
+ChatGPT:
+当然，下面是一些问题，用于考核和修正你对神经网络架构和预训练模型的理解：
+神经网络架构: 请解释什么是神经网络架构，并给出两个不同类型的架构示例。
+预训练模型的作用: 预训练模型在迁移学习中有什么作用？为什么使用预训练模型可能是有用的？
+ …">
+    <meta name="keywords" content='blog, gokarna, hugo, CNN'>
+
+    <meta property="og:url" content="https://okonfu.com/posts/%E9%A2%84%E8%AE%AD%E7%BB%83qa1/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="预训练Q&amp;A">
+    <meta property="og:description" content="You:
+请你通过几个问题，考核我这节课的知识，修正认知偏差。
+ChatGPT:
+当然，下面是一些问题，用于考核和修正你对神经网络架构和预训练模型的理解：
+神经网络架构: 请解释什么是神经网络架构，并给出两个不同类型的架构示例。
+预训练模型的作用: 预训练模型在迁移学习中有什么作用？为什么使用预训练模型可能是有用的？
+ …">
+    <meta property="og:image" content="https://okonfu.com/images/147919460.jpg">
+    <meta property="og:image:secure_url" content="https://okonfu.com/images/147919460.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="预训练Q&amp;A">
+    <meta name="twitter:description" content="You:
+请你通过几个问题，考核我这节课的知识，修正认知偏差。
+ChatGPT:
+当然，下面是一些问题，用于考核和修正你对神经网络架构和预训练模型的理解：
+神经网络架构: 请解释什么是神经网络架构，并给出两个不同类型的架构示例。
+预训练模型的作用: 预训练模型在迁移学习中有什么作用？为什么使用预训练模型可能是有用的？
+ …">
+    <meta property="twitter:domain" content="https://okonfu.com/posts/%E9%A2%84%E8%AE%AD%E7%BB%83qa1/">
+    <meta property="twitter:url" content="https://okonfu.com/posts/%E9%A2%84%E8%AE%AD%E7%BB%83qa1/">
+    <meta name="twitter:image" content="https://okonfu.com/images/147919460.jpg">
+
+    
+    <link rel="canonical" href="https://okonfu.com/posts/%E9%A2%84%E8%AE%AD%E7%BB%83qa1/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.893af8dd3b65bd0ffe90e7af33847bd6dc9180b8fa6d6659a212a6f4b62d3e01.js" integrity="sha256-iTr43TtlvQ/&#43;kOevM4R71tyRgLj6bWZZohKm9LYtPgE="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://okonfu.com/">
+                <img src='/images/147919460.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://okonfu.com/">okonfu</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/cv/" ><span data-feather='code'></span> CV </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/wkf16" ><span data-feather='github'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
+                <a>
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/cv/" ><span data-feather='code'></span> CV </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/wkf16" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a>
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>预训练Q&amp;A</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle"></small>
+	
+
+	
+          <p class="post-date">October 14, 2023
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://okonfu.com/tags/cnn">CNN</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <p><strong>You:</strong></p>
+<p>请你通过几个问题，考核我这节课的知识，修正认知偏差。</p>
+<hr>
+<p><strong>ChatGPT:</strong></p>
+<p>当然，下面是一些问题，用于考核和修正你对神经网络架构和预训练模型的理解：</p>
+<ol>
+<li>
+<p><strong>神经网络架构</strong>: 请解释什么是神经网络架构，并给出两个不同类型的架构示例。</p>
+</li>
+<li>
+<p><strong>预训练模型的作用</strong>: 预训练模型在迁移学习中有什么作用？为什么使用预训练模型可能是有用的？</p>
+</li>
+<li>
+<p><strong>特征图与特征向量</strong>: 这两者有什么区别和联系？在卷积神经网络中，它们各自的角色是什么？</p>
+</li>
+<li>
+<p><strong>全连接层与卷积层的区别</strong>: 在神经网络中，全连接层和卷积层各自的主要作用是什么？</p>
+</li>
+<li>
+<p><strong>数据预处理</strong>: 数据预处理在神经网络训练中起到什么作用？请举一两个具体的数据预处理方法。</p>
+</li>
+<li>
+<p><strong>损失函数的选择</strong>: 为什么选择合适的损失函数是重要的？能不能举个例子？</p>
+</li>
+<li>
+<p><strong>模型的输入与输出</strong>: 如何根据特定任务来确定模型的输入和输出？</p>
+</li>
+<li>
+<p><strong>微调（Fine-tuning）与特征提取的区别</strong>: 这两者在使用预训练模型时有什么不同？各自适用于什么样的场景？</p>
+</li>
+</ol>
+<p>请尽量准确和详细地回答这些问题，这样我可以更好地了解你的理解程度，并帮助你修正认知偏差。</p>
+<hr>
+<p><strong>You:</strong></p>
+<p>1、神经网络架构是由层次结构、激活函数、连接模式等多个方面构成，例如VCC、ResNet就是具体的架构。2、预训练模型是利用一种网络架构，在大数据集上训练得到的，因为它能总结出图像的一般特征，所以可能是有用的。3、特征图是卷积层和激活层的产物，通常包含更多信息，经过一个网络，可以获得多个特征图。特征向量则概念更宽泛，它包含了特征图经过全连接层降维后的产物，可以是高维也可以低维4、全连接层和卷积层首先原理就不同，卷积层更多的是在提取某种特征，而全连接层是把卷积层提取的特征图进行分类或者回归，获得特征向量。5、数据预处理，首先能能把数据调整到网络可以接受的格式，其次可以对数据进行随机噪声等，做数据增强，提高模型泛化能力。6，合适的损失函数能表达模型的准确性，并且在反向传播中需要利用损失函数来优化模型参数。例子我也不知道，MSE？7，看网络架构吧，输出看最后需要的内容，更改全连接层8，微调要训练整个网络，特征提取是利用已经训练好的卷积层生成特征，训练剩余的一小部分通常为全连接层。</p>
+<hr>
+<p><strong>ChatGPT:</strong></p>
+<p>很好，你的回答大部分是准确和相关的。但是，为了进一步提高你的理解，我会点出几个需要注意的地方。</p>
+<ol>
+<li>
+<p><strong>神经网络架构</strong>: 你没有完全解释层次结构、激活函数、连接模式是如何构成神经网络架构的。例如，VGG主要由多个卷积层和全连接层构成，通常使用ReLU作为激活函数。</p>
+</li>
+<li>
+<p><strong>预训练模型的作用</strong>: 你正确地提到了预训练模型的一般作用，但没有提到它们如何具体地帮助进行特征提取或任务迁移。</p>
+</li>
+<li>
+<p><strong>特征图与特征向量</strong>: 你的解释是基本正确的。特征图通常是卷积网络中间层的输出，包含了空间信息。特征向量则通常是更抽象和高级的表示。</p>
+</li>
+<li>
+<p><strong>全连接层与卷积层的区别</strong>: 你解释得很好。全连接层确实是用于分类或回归的。</p>
+</li>
+<li>
+<p><strong>数据预处理</strong>: 你正确地指出了数据预处理的重要性，但没提到具体的预处理方法，比如数据归一化或数据增强。</p>
+</li>
+<li>
+<p><strong>损失函数的选择</strong>: MSE（均方误差）是一个很好的例子，用于回归问题。但你没提到其他常用的损失函数，比如交叉熵用于分类问题。</p>
+</li>
+<li>
+<p><strong>模型的输入与输出</strong>: 你说“看网络架构吧”，这有点模糊。应该更具体地说，输入和输出需要根据解决的问题和数据类型来确定。</p>
+</li>
+<li>
+<p><strong>微调与特征提取</strong>: 你的解释是正确的。微调通常涉及对整个网络的训练，而特征提取则通常只涉及网络的一部分。</p>
+</li>
+</ol>
+<p>总体来说，你的理解是相当不错的，但有一些细节和准确性需要进一步改进。希望这些反馈能帮助你。</p>
+<p><strong>ChatGPT:</strong></p>
+<p>抱歉，上一次的回答可能没有完全满足你的需求。以下是针对你提到的问题的重新回答：</p>
+<ol>
+<li>
+<p><strong>神经网络架构</strong>: 正确。它由多层（如卷积层、池化层、全连接层等）和其他元素（如激活函数、优化器等）组成。</p>
+</li>
+<li>
+<p><strong>预训练模型</strong>: 正确。预训练模型通常在大数据集上训练，以捕获一般特性，可以用于微调或作为特征提取器。</p>
+</li>
+<li>
+<p><strong>特征图与特征向量</strong>: 基本正确。特征图通常是卷积操作的输出，包含了空间信息。特征向量则是高维或低维的，通常是特征图经过降维得到的。</p>
+</li>
+<li>
+<p><strong>全连接层与卷积层</strong>: 正确。卷积层负责提取特性，全连接层负责做<strong>决策</strong>（如分类或回归）。</p>
+</li>
+<li>
+<p><strong>数据预处理</strong>: 正确。预处理可以包括各种技术，比如归一化、数据增强等，以提高模型的性能和泛化能力。</p>
+</li>
+<li>
+<p><strong>损失函数</strong>: 选择合适的损失函数非常重要，因为它定义了优化问题的<strong>目标</strong>。不同的任务和数据分布可能需要不同类型的损失函数。</p>
+</li>
+<li>
+<p><strong>输入和输出</strong>: 正确。输入和输出取决于你要解决的具体问题和选择的网络架构。</p>
+</li>
+<li>
+<p><strong>微调与特征提取</strong>: 正确。微调涉及到整个网络的训练，而特征提取通常只涉及到全连接层的训练。</p>
+</li>
+</ol>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
+
+    
+    
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents"></nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+
+    
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2023 The Marauders</span>
+    
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>

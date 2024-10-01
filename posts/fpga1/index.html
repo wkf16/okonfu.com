@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>FPGA学习笔记1</title>
+    <meta name="description" content="FPGA入门 1.认识Vivado Sources: 显示项目中的所有源文件，如设计源文件、约束文件等。你可以在这里添加、编辑和组织Verilog文件。
+点击 Create File，输入文件名，例如 top.v（对于Verilog）
+为方便管理，保持顶层文件与工程文件一致。
+**分析与综合：**点击Run …">
+    <meta name="keywords" content='blog, gokarna, hugo, fpga'>
+
+    <meta property="og:url" content="https://okonfu.com/posts/fpga1/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="FPGA学习笔记1">
+    <meta property="og:description" content="FPGA入门 1.认识Vivado Sources: 显示项目中的所有源文件，如设计源文件、约束文件等。你可以在这里添加、编辑和组织Verilog文件。
+点击 Create File，输入文件名，例如 top.v（对于Verilog）
+为方便管理，保持顶层文件与工程文件一致。
+**分析与综合：**点击Run …">
+    <meta property="og:image" content="https://okonfu.com/images/147919460.jpg">
+    <meta property="og:image:secure_url" content="https://okonfu.com/images/147919460.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FPGA学习笔记1">
+    <meta name="twitter:description" content="FPGA入门 1.认识Vivado Sources: 显示项目中的所有源文件，如设计源文件、约束文件等。你可以在这里添加、编辑和组织Verilog文件。
+点击 Create File，输入文件名，例如 top.v（对于Verilog）
+为方便管理，保持顶层文件与工程文件一致。
+**分析与综合：**点击Run …">
+    <meta property="twitter:domain" content="https://okonfu.com/posts/fpga1/">
+    <meta property="twitter:url" content="https://okonfu.com/posts/fpga1/">
+    <meta name="twitter:image" content="https://okonfu.com/images/147919460.jpg">
+
+    
+    <link rel="canonical" href="https://okonfu.com/posts/fpga1/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.893af8dd3b65bd0ffe90e7af33847bd6dc9180b8fa6d6659a212a6f4b62d3e01.js" integrity="sha256-iTr43TtlvQ/&#43;kOevM4R71tyRgLj6bWZZohKm9LYtPgE="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://okonfu.com/">
+                <img src='/images/147919460.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://okonfu.com/">okonfu</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/cv/" ><span data-feather='code'></span> CV </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/wkf16" ><span data-feather='github'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
+                <a>
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/cv/" ><span data-feather='code'></span> CV </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/wkf16" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a>
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>FPGA学习笔记1</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle"></small>
+	
+
+	
+          <p class="post-date">June 22, 2024
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://okonfu.com/tags/fpga">fpga</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="fpga入门">FPGA入门</h1>
+<h2 id="1认识vivado">1.认识Vivado</h2>
+<img src=".\image-20240620223058450.png" alt="image-20240620223058450" style="zoom:50%;" />
+<p><img src="https://github.com/leezicai/share/raw/master/icon/number/1.png" alt="number1"></p>
+<img src=".\image-20240620223058450.png" alt="image-20240620223058450" style="zoom:50%;" />
+<p><strong>Sources</strong>: 显示项目中的所有源文件，如设计源文件、约束文件等。你可以在这里添加、编辑和组织Verilog文件。</p>
+<p>点击 <code>Create File</code>，输入文件名，例如 <code>top.v</code>（对于Verilog）</p>
+<p>为方便管理，保持顶层文件与工程文件一致。</p>
+<p>**分析与综合：**点击Run Synthesis</p>
+<p>**约束：**生成原理图，点开I/O Port分配管脚和电压(或直接编辑约束文件)，点击 <code>Generate  Bitstream</code>生成比特流。</p>
+<p><strong>烧录：</strong> <code>Open Hardware Manager</code> -&gt;<code>Open Target</code>-&gt; <code>auto connect</code></p>
+<h2 id="2例程1led_bink">2.例程1：LED_Bink</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-verilog" data-lang="verilog"><span style="display:flex;"><span><span style="color:#66d9ef">module</span> top( <span style="color:#75715e">// 定义一个名为top的模块
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//定义它的io
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">input</span> <span style="color:#66d9ef">wire</span> clk,          <span style="color:#75715e">// FPGA的时钟信号
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">output</span> <span style="color:#66d9ef">reg</span> led           <span style="color:#75715e">// 控制LED的输出端口
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 定义一个计数器，用于生成时间延迟
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">reg</span> [<span style="color:#ae81ff">24</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;  <span style="color:#75715e">// 定义一个25位宽的寄存器counter，初始值为0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">always</span> @(<span style="color:#66d9ef">posedge</span> clk) <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>    counter <span style="color:#f92672">&lt;=</span> counter <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(counter <span style="color:#f92672">==</span> <span style="color:#ae81ff">25</span>_000_000) <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>        led <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">~</span>led;        <span style="color:#75715e">// 翻转LED状态
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        counter <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>;       <span style="color:#75715e">// 重置计数器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">endmodule</span>
+</span></span></code></pre></div><h4 id="21verilog模块结构">2.1.Verilog模块结构</h4>
+<p>Verilog代码基于模块（module）结构，每个模块可以表示一个硬件组件。</p>
+<p>模块以关键词 <code>module</code> 开始，并以 <code>endmodule</code> 结束。模块可以包含输入输出端口、内部信号定义、逻辑描述等。</p>
+<h4 id="22寄存器和线网">2.2.寄存器和线网</h4>
+<ul>
+<li>verilog基本数据类型：
+<ul>
+<li><code>wire</code>：用于连续赋值，不能在过程控制块（如 <code>always</code> 块）内被赋值。</li>
+<li><code>reg</code>：不仅仅是寄存器，它可以在过程控制块中被赋值。</li>
+<li><code>parameter</code> 关键字用于定义常量值。</li>
+<li>形如<code>[24:0]</code> 是一种位向量的声明方式。表示位0到位24。</li>
+</ul>
+</li>
+</ul>
+<h4 id="23重要概念阻塞赋值与非阻塞赋值">2.3.重要概念：阻塞赋值与非阻塞赋值</h4>
+<ul>
+<li><strong>阻塞赋值</strong>（<code>=</code>）：执行顺序依赖，前一个赋值完成后，后一个才开始。</li>
+<li><strong>非阻塞赋值</strong>（<code>&lt;=</code>）：所有赋值看似同时发生，更接近硬件的行为。</li>
+</ul>
+<p>在 <code>always</code> 块中，通常使用非阻塞赋值 <code>&lt;=</code> 来更新寄存器。这是为了确保所有赋值在同一个时钟周期内<strong>并行更新</strong>，模拟真实硬件的行为。</p>
+<h4 id="24控制过程块">2.4.控制过程块</h4>
+<ol>
+<li>
+<p><code>always</code> 块</p>
+<p>Verilog使用 <code>always</code> 块来描述硬件的行为，这类似于软件中的函数，但是是<strong>并行</strong>执行的。</p>
+<p><strong>基本语法:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-verilog" data-lang="verilog"><span style="display:flex;"><span><span style="color:#66d9ef">always</span> @(<span style="color:#960050;background-color:#1e0010">触发条件</span>) <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 代码块
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p><strong>触发条件：</strong></p>
+<ul>
+<li><code>@(posedge)</code>：信号的上升沿</li>
+<li><code>@(negedge)</code>：信号的下降沿</li>
+<li><code>@(signal)</code> 或 <code>@(any changes)</code>：信号值的任何变化</li>
+</ul>
+</li>
+<li>
+<p><code>initial</code> 块</p>
+<p><code>initial</code> 块用于在仿真开始时执行一次性的操作，通常用于初始化变量或在测试中设置环境。</p>
+<p><strong>基本语法:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-verilog" data-lang="verilog"><span style="display:flex;"><span><span style="color:#66d9ef">initial</span> <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 代码块
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="3例程2led_breath">3.例程2：LED_Breath</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-verilog" data-lang="verilog"><span style="display:flex;"><span><span style="color:#66d9ef">module</span> breath_led(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">input</span>       sys_clk ,      <span style="color:#75715e">//系统时钟 50MHz
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">input</span>       sys_rst_n ,    <span style="color:#75715e">//系统复位，低电平有效
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">output</span> <span style="color:#66d9ef">reg</span>  led            <span style="color:#75715e">//LED灯
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//parameter define
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">parameter</span> CNT_2US_MAX <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span><span style="color:#ae81ff">&#39;d100</span>;    
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">parameter</span> CNT_2MS_MAX <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;d1000</span>; 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">parameter</span> CNT_2S_MAX  <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;d1000</span>; 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//reg define
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">reg</span> [<span style="color:#ae81ff">6</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] cnt_2us; 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">reg</span> [<span style="color:#ae81ff">9</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] cnt_2ms;   
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">reg</span> [<span style="color:#ae81ff">9</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>] cnt_2s;     
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">reg</span>       inc_dec_flag; <span style="color:#75715e">//亮度递增/递减 0:递增 1:递减
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//*****************************************************
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//**                  main code
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//*****************************************************
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//cnt_2us:计数2us
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">always</span>@(<span style="color:#66d9ef">posedge</span> sys_clk <span style="color:#66d9ef">or</span> <span style="color:#66d9ef">negedge</span> sys_rst_n) <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>sys_rst_n)
+</span></span><span style="display:flex;"><span>        cnt_2us <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">7</span><span style="color:#ae81ff">&#39;b0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(cnt_2us <span style="color:#f92672">==</span> (CNT_2US_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span><span style="color:#ae81ff">&#39;b1</span> ))
+</span></span><span style="display:flex;"><span>        cnt_2us <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">7</span><span style="color:#ae81ff">&#39;b0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        cnt_2us <span style="color:#f92672">&lt;=</span> cnt_2us <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span><span style="color:#ae81ff">&#39;b1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//cnt_2ms:计数2ms
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">always</span>@(<span style="color:#66d9ef">posedge</span> sys_clk <span style="color:#66d9ef">or</span> <span style="color:#66d9ef">negedge</span> sys_rst_n) <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>sys_rst_n)
+</span></span><span style="display:flex;"><span>        cnt_2ms <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;b0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(cnt_2ms <span style="color:#f92672">==</span> (CNT_2MS_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;b1</span>) <span style="color:#f92672">&amp;&amp;</span> cnt_2us <span style="color:#f92672">==</span> (CNT_2US_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span><span style="color:#ae81ff">&#39;b1</span>))
+</span></span><span style="display:flex;"><span>        cnt_2ms <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;b0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(cnt_2us <span style="color:#f92672">==</span> CNT_2US_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span><span style="color:#ae81ff">&#39;b1</span>)
+</span></span><span style="display:flex;"><span>        cnt_2ms <span style="color:#f92672">&lt;=</span> cnt_2ms <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;b1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        cnt_2ms <span style="color:#f92672">&lt;=</span> cnt_2ms;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//cnt_2s:计数2s
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">always</span>@(<span style="color:#66d9ef">posedge</span> sys_clk <span style="color:#66d9ef">or</span> <span style="color:#66d9ef">negedge</span> sys_rst_n) <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>sys_rst_n)
+</span></span><span style="display:flex;"><span>        cnt_2s <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;b0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(cnt_2s <span style="color:#f92672">==</span> (CNT_2S_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;b1</span>) <span style="color:#f92672">&amp;&amp;</span> cnt_2ms <span style="color:#f92672">==</span> (CNT_2MS_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;b1</span>) <span style="color:#f92672">&amp;&amp;</span> cnt_2us <span style="color:#f92672">==</span> (CNT_2US_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span><span style="color:#ae81ff">&#39;b1</span>))
+</span></span><span style="display:flex;"><span>        cnt_2s <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;b0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(cnt_2ms <span style="color:#f92672">==</span> (CNT_2MS_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;b1</span>) <span style="color:#f92672">&amp;&amp;</span> cnt_2us <span style="color:#f92672">==</span> (CNT_2US_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span><span style="color:#ae81ff">&#39;b1</span>))
+</span></span><span style="display:flex;"><span>        cnt_2s <span style="color:#f92672">&lt;=</span> cnt_2s <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;b1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        cnt_2s <span style="color:#f92672">&lt;=</span> cnt_2s;         
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//inc_dec_flag为低电平，led灯由暗变亮，inc_dec_flag为高电平，led灯由亮变暗
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">always</span>@(<span style="color:#66d9ef">posedge</span> sys_clk <span style="color:#66d9ef">or</span> <span style="color:#66d9ef">negedge</span> sys_rst_n) <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>sys_rst_n)
+</span></span><span style="display:flex;"><span>        inc_dec_flag <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(cnt_2s <span style="color:#f92672">==</span> (CNT_2S_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;b1</span>) <span style="color:#f92672">&amp;&amp;</span> cnt_2ms <span style="color:#f92672">==</span>( CNT_2MS_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span><span style="color:#ae81ff">&#39;b1</span>) <span style="color:#f92672">&amp;&amp;</span> cnt_2us <span style="color:#f92672">==</span> (CNT_2US_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span><span style="color:#ae81ff">&#39;b1</span>))
+</span></span><span style="display:flex;"><span>        inc_dec_flag <span style="color:#f92672">&lt;=</span> <span style="color:#f92672">~</span>inc_dec_flag;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        inc_dec_flag <span style="color:#f92672">&lt;=</span> inc_dec_flag;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//led:输出信号连接到外部的led灯
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">always</span>@(<span style="color:#66d9ef">posedge</span> sys_clk <span style="color:#66d9ef">or</span> <span style="color:#66d9ef">negedge</span> sys_rst_n) <span style="color:#66d9ef">begin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>sys_rst_n)
+</span></span><span style="display:flex;"><span>        led <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>((inc_dec_flag <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b1</span> <span style="color:#f92672">&amp;&amp;</span> cnt_2ms <span style="color:#f92672">&gt;=</span> cnt_2s) <span style="color:#f92672">||</span> (inc_dec_flag <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b0</span> <span style="color:#f92672">&amp;&amp;</span> cnt_2ms <span style="color:#f92672">&lt;=</span> cnt_2s))
+</span></span><span style="display:flex;"><span>        led <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        led <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">endmodule</span>
+</span></span></code></pre></div><p><strong>memo：</strong></p>
+<ul>
+<li>
+<p>代码通过控制一个周期内LED点亮时间来控制亮度。</p>
+</li>
+<li>
+<p>所有<code>always</code>都是并行运行的</p>
+</li>
+<li>
+<p>reg不可在<code>always</code>和<code>initial</code>外赋值</p>
+</li>
+<li>
+<p>重新编译完记得reload</p>
+</li>
+<li>
+<p>一个reg最好只在一个<code>always</code>内赋值</p>
+</li>
+</ul>
+<h4 id="31数字常量表示形式">3.1.数字常量表示形式</h4>
+<p><code>&lt;size&gt;'&lt;base&gt;&lt;number&gt;</code></p>
+<ul>
+<li>
+<p><strong>size</strong>：数字的位宽。</p>
+</li>
+<li>
+<p><strong>base</strong>：数字的基数，可以是<code>b</code>（二进制）、<code>o</code>（八进制）、<code>d</code>（十进制）或<code>h</code>（十六进制）。</p>
+</li>
+<li>
+<p><strong>number</strong>：具体的数字值。</p>
+</li>
+</ul>
+<p>例如：</p>
+<ul>
+<li><code>10'd1000</code> 表示一个十进制的1000，它是一个10位宽的数字。</li>
+<li><code>7'b1</code> 表示二进制的1，它是一个7位宽的数字，实际上等同于二进制的<code>0000001</code>。</li>
+</ul>
+<p>遇到非常奇怪的问题，就是原理图无法正确生成。（发现是无论如何始终LED输出都是0导致的）</p>
+<h4 id="32计数器实现">3.2.计数器实现</h4>
+<p>通过三个级联的<code>always</code>计时器，实现精确定时。</p>
+<ul>
+<li>
+<p><strong><code>cnt_2us</code> 计数器</strong>：这是最基础的计数器，它在每个系统时钟的上升沿递增，当达到预设的最大值，并且触发下一个级别的计数器 <code>cnt_2ms</code>。</p>
+</li>
+<li>
+<p><strong><code>cnt_2ms</code> 计数器</strong>：这个计数器仅在 <code>cnt_2us</code> 计数器达到其最大值并复位时递增。这样，每当 <code>cnt_2us</code> 完成一轮计数，<code>cnt_2ms</code> 才递增一次。</p>
+</li>
+<li>
+<p><strong><code>cnt_2s</code> 计数器</strong>：这个计数器依赖于 <code>cnt_2ms</code> 的递增。当 <code>cnt_2ms</code> 达到其最大值并复位，且同时 <code>cnt_2us</code> 也在同一时刻达到最大值并复位时，<code>cnt_2s</code> 才会递增。</p>
+</li>
+</ul>
+<p><strong>条件复位和递增</strong>：</p>
+<ul>
+<li>
+<p><strong>对于 <code>cnt_2ms</code></strong>：这个计数器检查 <code>cnt_2us</code> 是否达到了其最大值 (<code>CNT_2US_MAX - 1</code>)。仅当这个条件为真时，<code>cnt_2ms</code> 才会递增。</p>
+</li>
+<li>
+<p><strong>对于 <code>cnt_2s</code></strong>：这个计数器的递增依赖于 <code>cnt_2ms</code> 达到其最大值且 <code>cnt_2us</code> 同时达到其最大值的情况。</p>
+</li>
+<li>
+<p>上级的所有计数器达到最大值时当级才递增。</p>
+</li>
+</ul>
+<h2 id="4day2">4.Day2</h2>
+<p>今天开始正经看文档和视频，不瞎捣鼓了。</p>
+<h3 id="41assign-语句">4.1<code>assign</code> 语句</h3>
+<pre tabindex="0"><code>assign target = expression;
+</code></pre><ul>
+<li><strong>target</strong>：目标信号，线网（wire）类型的变量。不可以是寄存器（reg）类型。</li>
+<li><strong>expression</strong>：表达式，可以包含常数、信号名、逻辑运算符等，用于计算赋值给目标信号的值。</li>
+<li><strong>特点：</strong>
+<ul>
+<li>
+<p><strong>实时更新</strong>：当 <code>expression</code> 中任何值发生变化时，<code>target</code> 的值会<strong>立即更新。</strong></p>
+</li>
+<li>
+<p><strong>组合逻辑</strong>：通常用于实现无时钟控制的组合逻辑电路。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>所以，我们有一个更好的实现计时器的方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-verilog" data-lang="verilog"><span style="display:flex;"><span><span style="color:#75715e">//计数器溢出使能信号
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">assign</span>  counter_en <span style="color:#f92672">=</span> (counter <span style="color:#f92672">==</span> (COUNT_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b1</span>))  <span style="color:#f92672">?</span>  <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b1</span>  <span style="color:#f92672">:</span>  <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//用于产生 0.5 秒使能信号的计数器 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">always</span> @(<span style="color:#66d9ef">posedge</span> sys_clk <span style="color:#66d9ef">or</span> <span style="color:#66d9ef">negedge</span> sys_rst_n) <span style="color:#66d9ef">begin</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (sys_rst_n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b0</span>) 
+</span></span><span style="display:flex;"><span>        counter <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b0</span>;      
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (counter_en)          
+</span></span><span style="display:flex;"><span>        counter <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b0</span>; 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> 
+</span></span><span style="display:flex;"><span>        counter <span style="color:#f92672">&lt;=</span> counter <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b1</span>; 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h3 id="42硬件调试">4.2硬件调试</h3>
+<img src=".\image-20240621214000545.png" alt="image-20240621214000545" style="zoom: 50%;" />
+<p>首先检查时钟和复位。</p>
+<h4 id="421ila调试">4.2.1ILA调试</h4>
+<p>ILA可以<strong>实时监控FPGA内部的信号</strong>，不需要将信号引出到外部测试设备。</p>
+<p><img src=".%5Cimage-20240621223310899.png" alt="image-20240621223310899"></p>
+<p>用了ip核里的ILA，加上条件，很快就定位到问题语句</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-verilog" data-lang="verilog"><span style="display:flex;"><span><span style="color:#66d9ef">assign</span>  pwm_width_ov <span style="color:#f92672">=</span> (pwm_cnt <span style="color:#f92672">==</span> (CNT_PWM_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span><span style="color:#ae81ff">&#39;d1</span>))  <span style="color:#f92672">?</span>  <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b1</span>  <span style="color:#f92672">:</span>  <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b0</span>;
+</span></span></code></pre></div><p>非常低级的错误，但也算给我第一次使用ip核提供了宝贵的素材。</p>
+<p>通过ILA的帮助，费劲千辛万苦，终于实现了一个呼吸灯。</p>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
+
+    
+    
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#fpga入门">FPGA入门</a>
+      <ul>
+        <li><a href="#1认识vivado">1.认识Vivado</a></li>
+        <li><a href="#2例程1led_bink">2.例程1：LED_Bink</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#21verilog模块结构">2.1.Verilog模块结构</a></li>
+                <li><a href="#22寄存器和线网">2.2.寄存器和线网</a></li>
+                <li><a href="#23重要概念阻塞赋值与非阻塞赋值">2.3.重要概念：阻塞赋值与非阻塞赋值</a></li>
+                <li><a href="#24控制过程块">2.4.控制过程块</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#3例程2led_breath">3.例程2：LED_Breath</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#31数字常量表示形式">3.1.数字常量表示形式</a></li>
+                <li><a href="#32计数器实现">3.2.计数器实现</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#4day2">4.Day2</a>
+          <ul>
+            <li><a href="#41assign-语句">4.1<code>assign</code> 语句</a></li>
+            <li><a href="#42硬件调试">4.2硬件调试</a>
+              <ul>
+                <li><a href="#421ila调试">4.2.1ILA调试</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+
+    
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2024 The Marauders</span>
+    
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>

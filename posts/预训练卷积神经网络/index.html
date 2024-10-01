@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>卷积神经网络（CNN）的发展</title>
+    <meta name="description" content="卷积神经网络（CNN）的发展 基础CNN: 初始的CNN模型主要包括卷积层（Convolutional Layer）、激活函数（如ReLU）、池化层（Pooling Layer）和全连接层（Fully Connected Layer）。 更深的网络: 随着硬件的进步（尤其是GPU），研究人员开始设计更深的网络，例 …">
+    <meta name="keywords" content='blog, gokarna, hugo, CNN'>
+
+    <meta property="og:url" content="https://okonfu.com/posts/%E9%A2%84%E8%AE%AD%E7%BB%83%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="卷积神经网络（CNN）的发展">
+    <meta property="og:description" content="卷积神经网络（CNN）的发展 基础CNN: 初始的CNN模型主要包括卷积层（Convolutional Layer）、激活函数（如ReLU）、池化层（Pooling Layer）和全连接层（Fully Connected Layer）。 更深的网络: 随着硬件的进步（尤其是GPU），研究人员开始设计更深的网络，例 …">
+    <meta property="og:image" content="https://okonfu.com/images/147919460.jpg">
+    <meta property="og:image:secure_url" content="https://okonfu.com/images/147919460.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="卷积神经网络（CNN）的发展">
+    <meta name="twitter:description" content="卷积神经网络（CNN）的发展 基础CNN: 初始的CNN模型主要包括卷积层（Convolutional Layer）、激活函数（如ReLU）、池化层（Pooling Layer）和全连接层（Fully Connected Layer）。 更深的网络: 随着硬件的进步（尤其是GPU），研究人员开始设计更深的网络，例 …">
+    <meta property="twitter:domain" content="https://okonfu.com/posts/%E9%A2%84%E8%AE%AD%E7%BB%83%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+    <meta property="twitter:url" content="https://okonfu.com/posts/%E9%A2%84%E8%AE%AD%E7%BB%83%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+    <meta name="twitter:image" content="https://okonfu.com/images/147919460.jpg">
+
+    
+    <link rel="canonical" href="https://okonfu.com/posts/%E9%A2%84%E8%AE%AD%E7%BB%83%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.893af8dd3b65bd0ffe90e7af33847bd6dc9180b8fa6d6659a212a6f4b62d3e01.js" integrity="sha256-iTr43TtlvQ/&#43;kOevM4R71tyRgLj6bWZZohKm9LYtPgE="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://okonfu.com/">
+                <img src='/images/147919460.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://okonfu.com/">okonfu</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/cv/" ><span data-feather='code'></span> CV </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/wkf16" ><span data-feather='github'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
+                <a>
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/cv/" ><span data-feather='code'></span> CV </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/wkf16" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a>
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>卷积神经网络（CNN）的发展</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle"></small>
+	
+
+	
+          <p class="post-date">November 13, 2023
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://okonfu.com/tags/cnn">CNN</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h3 id="卷积神经网络cnn的发展">卷积神经网络（CNN）的发展</h3>
+<ol>
+<li><strong>基础CNN</strong>: 初始的CNN模型主要包括卷积层（Convolutional Layer）、激活函数（如ReLU）、池化层（Pooling Layer）和全连接层（Fully Connected Layer）。</li>
+<li><strong>更深的网络</strong>: 随着硬件的进步（尤其是GPU），研究人员开始设计更深的网络，例如VGG、ResNet等。</li>
+<li><strong>特殊架构和模块</strong>: 随着研究的深入，人们也设计出了一些更高效或者针对特定任务更有效的架构和模块，如Inception模块、Residual Block等。</li>
+<li><strong>迁移学习</strong>: 当前，预训练模型在多个任务和领域中都有广泛应用，这就是迁移学习（Transfer Learning）。</li>
+<li><strong>端到端训练和多任务学习</strong>: 最近，越来越多的模型开始支持从输入到输出（或多个输出）的端到端训练，这样可以同时解决分类、检测、分割等多个任务。</li>
+</ol>
+<h3 id="神经网络架构与模型">神经网络架构与模型</h3>
+<ol>
+<li><strong>神经网络架构</strong>: 神经网络架构是一个固定的<strong>结构</strong>，它定义了模型的基本组件和组织方式，包括层的类型、层的数量、参数等。</li>
+<li><strong>神经网络模型</strong>: 当一个神经网络架构经过<strong>具体的训练</strong>（如在某个数据集上进行反向传播等）后，它就变成了一个“模型”。这个模型包含了经过训练的<strong>权重</strong>和<strong>偏置</strong>。</li>
+</ol>
+<h3 id="名门神经网络架构">名门神经网络架构</h3>
+<ol>
+<li><strong>LeNet</strong>: 用于手写数字识别，主要包括卷积层和池化层。</li>
+<li><strong>AlexNet</strong>: 在2012年的ImageNet竞赛中表现出色，包括5个卷积层和3个全连接层。</li>
+<li><strong>VGG</strong>: 由多个3x3的卷积核组成，模型结构深，最多有19层。</li>
+<li><strong>ResNet</strong>: 通过添加残差连接来解决深度模型的梯度消失和爆炸问题。</li>
+</ol>
+<p>这些架构因其在特定任务上的优秀表现而广为人知，因此它们的名字已经成为描述这类特定结构的标签。</p>
+<h3 id="预训练模型">预训练模型</h3>
+<ol>
+<li><strong>定义</strong>: &ldquo;预训练模型&quot;是指那些已经在大规模数据集上进行过训练的模型。</li>
+<li><strong>优点</strong>: 预训练模型通常已经学习到了很多<strong>通用的特征</strong>，这些特征可以用于其他相关的任务。</li>
+<li><strong>应用场景</strong>: 例如，VGG和AlexNet通常在ImageNet这样的大规模图像分类数据集上进行训练，然后可以用于其他视觉任务，如目标检测或图像分割。</li>
+<li><strong>迁移学习</strong>: 利用预训练模型进行其他任务的训练过程通常被称为“迁移学习”。</li>
+</ol>
+<p>总体来说，神经网络架构是一个设计蓝图，而通过在特定数据集上训练这一架构，你将得到一个可以执行特定任务（如分类、回归等）的模型。</p>
+<p>一些名门的架构因其优异的性能而成为行业标准，经常被用作新任务的起点，这就是所谓的预训练模型。</p>
+<h3 id="使用预训练模型的步骤">使用预训练模型的步骤</h3>
+<ol>
+<li>
+<p><strong>选择预训练模型</strong>: 根据你的任务和需求（例如，需要高准确度还是低计算复杂度），选择一个合适的预训练模型（如VGG, AlexNet, ResNet等）。</p>
+</li>
+<li>
+<p><strong>数据预处理</strong>: 将你的数据集调整到与预训练模型兼容的格式和大小。这通常包括图像缩放、归一化等。</p>
+</li>
+<li>
+<h4 id="特征提取或微调"><strong>特征提取或微调</strong>:</h4>
+<h5 id="特征提取feature-extraction"><strong>特征提取（Feature Extraction）</strong></h5>
+</li>
+<li>
+<p><strong>加载预训练模型</strong>: 首先，你需要加载一个预训练模型（比如VGG、AlexNet等）。</p>
+</li>
+<li>
+<p><strong>移除全连接层</strong>: 接下来，你通常会移除模型末端的全连接层（分类层）。</p>
+</li>
+<li>
+<p><strong>数据预处理</strong>: 将你自己的数据集预处理成模型需要的格式。</p>
+</li>
+<li>
+<p><strong>特征生成</strong>: 通过将你的数据集传递通过预训练模型的卷积层，你会得到一系列特征图（feature maps）。</p>
+</li>
+<li>
+<p><strong>新模型构建</strong>: 然后，你可以添加一个或多个全连接层，这些层会依据特征图来进行你自己任务的<strong>分类或回归</strong>。</p>
+</li>
+<li>
+<p><strong>训练与测试</strong>: 最后，你只需要训练这些新添加的全连接层，并在测试集上进行评估。
+实质上使用预训练模型训练自己的数据集，就是在用我们数据集的<strong>特征向量</strong>来做分类和回归<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，我们在用优化算法<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>训练一种分类和回归模型<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>。</p>
+<h5 id="微调fine-tuning">微调（Fine-tuning）</h5>
+<p>与特征提取不同，微调是在预训练模型的基础上继续训练整个模型（包括卷积层和全连接层），以适应新任务。这通常在新数据集足够大并且与预训练模型的数据集相似时才会这么做。</p>
+<p><strong>注意事项：</strong></p>
+<ul>
+<li>
+<p><strong>学习率</strong>: 通常微调的学习率会设置得比较小，以防止快速地“遗忘”有用的特征。</p>
+</li>
+<li>
+<p><strong>训练与验证</strong>: 使用你的数据集进行训练和验证。如果是特征提取，你只需要训练你添加的新层；如果是微调，你可能需要在整个网络上进行训练。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>评估</strong>: 在测试集上评估模型性能，使用诸如准确度、F1分数、IoU等指标。</p>
+</li>
+</ol>
+<h3 id="输入和输出">输入和输出</h3>
+<p>以R-CNN为例：</p>
+<ol>
+<li><strong>输入</strong>: 你首先会有一个图像，这个图像将经过预处理以适应预训练模型的<strong>输入要求</strong>。</li>
+<li><strong>中间输出（特征向量）</strong>: 当图像通过预训练模型（如VGG或AlexNet）时，你得到的是一个<strong>特征向量</strong>。这个特征向量是预训练模型的输出，也是接下来步骤的输入。</li>
+<li><strong>全连接层和最终输出</strong>: 这个特征向量会被传递到一个全连接层进行分类（或回归）。全连接层的权重和偏置通常是在训练过程中从数据中学习的。</li>
+</ol>
+<h4 id="针对特征向量要做的事">针对特征向量要做的事：</h4>
+<ol>
+<li><strong>分类</strong>: 你可以在特征向量后面添加一个或多个全连接层，进行目标检测任务的分类。</li>
+<li><strong>定位（Bounding Box Regression）</strong>: 同时，也可以进行边界框回归来更精确地定位目标。</li>
+</ol>
+<h4 id="如何确定全连接层">如何确定全连接层：</h4>
+<ol>
+<li><strong>结构</strong>: 通常情况下，全连接层在预训练模型的最后，你可以根据需要添加额外的全连接层或调整已有层的神经元数量。</li>
+<li><strong>位置</strong>: 在大多数深度学习框架（如TensorFlow或PyTorch）中，可以很方便地查看模型的架构，包括全连接层的位置。</li>
+</ol>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>分类是要预测输入属于哪个类别，而回归是预测一个连续的数值。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>通常是梯度下降或其变体，如Adam、RMSprop等&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>通常是替换或添加预训练模型的头部（通常是全连接层）&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
+
+    
+    
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#卷积神经网络cnn的发展">卷积神经网络（CNN）的发展</a></li>
+            <li><a href="#神经网络架构与模型">神经网络架构与模型</a></li>
+            <li><a href="#名门神经网络架构">名门神经网络架构</a></li>
+            <li><a href="#预训练模型">预训练模型</a></li>
+            <li><a href="#使用预训练模型的步骤">使用预训练模型的步骤</a>
+              <ul>
+                <li><a href="#特征提取或微调"><strong>特征提取或微调</strong>:</a></li>
+              </ul>
+            </li>
+            <li><a href="#输入和输出">输入和输出</a>
+              <ul>
+                <li><a href="#针对特征向量要做的事">针对特征向量要做的事：</a></li>
+                <li><a href="#如何确定全连接层">如何确定全连接层：</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+
+    
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2023 The Marauders</span>
+    
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
