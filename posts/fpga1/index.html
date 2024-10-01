@@ -213,9 +213,7 @@
     <div class="post-content">
         <h1 id="fpga入门">FPGA入门</h1>
 <h2 id="1认识vivado">1.认识Vivado</h2>
-<img src="https://github.com/leezicai/share/raw/master/icon/number/1.png" alt="image-20240620223058450" style="zoom:50%;" />
-<p><img src="https://github.com/leezicai/share/raw/master/icon/number/1.png" alt="number1"></p>
-<img src=".\image-20240620223058450.png" alt="image-20240620223058450" style="zoom:50%;" />
+<img src="image-20240620223058450.png" alt="image-20240620223058450" style="zoom:50%;" />
 <p><strong>Sources</strong>: 显示项目中的所有源文件，如设计源文件、约束文件等。你可以在这里添加、编辑和组织Verilog文件。</p>
 <p>点击 <code>Create File</code>，输入文件名，例如 <code>top.v</code>（对于Verilog）</p>
 <p>为方便管理，保持顶层文件与工程文件一致。</p>
@@ -457,11 +455,11 @@
 </span></span><span style="display:flex;"><span>        counter <span style="color:#f92672">&lt;=</span> counter <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b1</span>; 
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
 </span></span></code></pre></div><h3 id="42硬件调试">4.2硬件调试</h3>
-<img src=".\image-20240621214000545.png" alt="image-20240621214000545" style="zoom: 50%;" />
+<img src="image-20240621214000545.png" alt="image-20240621214000545" style="zoom: 50%;" />
 <p>首先检查时钟和复位。</p>
 <h4 id="421ila调试">4.2.1ILA调试</h4>
 <p>ILA可以<strong>实时监控FPGA内部的信号</strong>，不需要将信号引出到外部测试设备。</p>
-<p><img src=".%5Cimage-20240621223310899.png" alt="image-20240621223310899"></p>
+<p><img src="image-20240621223310899.png" alt="image-20240621223310899"></p>
 <p>用了ip核里的ILA，加上条件，很快就定位到问题语句</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-verilog" data-lang="verilog"><span style="display:flex;"><span><span style="color:#66d9ef">assign</span>  pwm_width_ov <span style="color:#f92672">=</span> (pwm_cnt <span style="color:#f92672">==</span> (CNT_PWM_MAX <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span><span style="color:#ae81ff">&#39;d1</span>))  <span style="color:#f92672">?</span>  <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b1</span>  <span style="color:#f92672">:</span>  <span style="color:#ae81ff">1</span><span style="color:#ae81ff">&#39;b0</span>;
 </span></span></code></pre></div><p>非常低级的错误，但也算给我第一次使用ip核提供了宝贵的素材。</p>

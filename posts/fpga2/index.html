@@ -217,12 +217,12 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
         <h1 id="fpga_ddr3">FPGA_DDR3</h1>
 <h2 id="1编程结构状态机fsm">1.编程结构：状态机FSM</h2>
 <p>在verilog实现顺序逻辑。</p>
-<img src=".\image-20240622163956622.png" alt="image-20240622163956622" style="zoom: 25%;" />
+<img src="image-20240622163956622.png" alt="image-20240622163956622" style="zoom: 25%;" />
 <p>在<strong>有限个状态</strong>之间按一定规律转换的<strong>时序电路</strong>。</p>
 <p>状态的改变只发生在时钟的跳沿。</p>
 <ol>
-<li>Mealy状态机：输出由<strong>当前状态</strong>和<strong>输入</strong>决定。<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622164806158.png" alt="image-20240622164806158" style="zoom:33%;" /></li>
-<li>Moore 状态机：的输出只取决于当前状态。<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622164959152.png" alt="image-20240622164959152" style="zoom:33%;" /></li>
+<li>Mealy状态机：输出由<strong>当前状态</strong>和<strong>输入</strong>决定。<img src="image-20240622164806158.png" alt="image-20240622164806158" style="zoom:33%;" /></li>
+<li>Moore 状态机：的输出只取决于当前状态。<img src="image-20240622164959152.png" alt="image-20240622164959152" style="zoom:33%;" /></li>
 </ol>
 <ul>
 <li>
@@ -239,7 +239,7 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 <ul>
 <li>状态空间定义
 <ul>
-<li>定义所有状态，对状态进行编码。<img src=".\image-20240622165404927.png" alt="image-20240622165404927" style="zoom: 50%;" /></li>
+<li>定义所有状态，对状态进行编码。<img src="image-20240622165404927.png" alt="image-20240622165404927" style="zoom: 50%;" /></li>
 <li>定义状态寄存器，位宽与状态保持一致。</li>
 </ul>
 </li>
@@ -259,15 +259,15 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 </ul>
 <h3 id="12三段式状态机">1.2三段式状态机</h3>
 <p>在输出前加入时序控制。</p>
-<p><img src=".%5Cimage-20240622181144947.png" alt="image-20240622181144947"></p>
+<p><img src="image-20240622181144947.png" alt="image-20240622181144947"></p>
 <ul>
 <li>可以去除组合逻辑输出毛刺</li>
 <li>有效进行时序计算和约束</li>
 <li>易于数据对其</li>
 </ul>
-<p><img src="C:%5CUsers%5Ca1606%5CDocuments%5C%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%5C%E7%94%B5%E8%B5%9B%E5%AE%9E%E8%B7%B5%E8%AF%BE%5CFPGA%5Cimage-20240622181520444.png" alt="输出时序"></p>
+<p><img src="image-20240622181520444.png" alt="输出时序"></p>
 <h2 id="2fifo">2.FIFO</h2>
-<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622192553805.png" alt="image-20240622192553805" style="zoom: 50%;" />
+<img src="\image-20240622192553805.png" alt="image-20240622192553805" style="zoom: 50%;" />
 <ul>
 <li>
 <p>先入先出缓存器</p>
@@ -279,10 +279,10 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 <p>可异步时钟时做缓存</p>
 </li>
 </ul>
-<img src="C:\Users\a1606\AppData\Roaming\Typora\typora-user-images\image-20240622201204501.png" alt="image-20240622201204501" style="zoom:25%;" />
+<img src="\image-20240622201204501.png" alt="image-20240622201204501" style="zoom:25%;" />
 <h2 id="3ddr3入门">3.DDR3入门</h2>
 <h3 id="31从sdram到ddr3">3.1从SDRAM到DDR3</h3>
-<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622222139771.png" alt="image-20240622222139771" style="zoom:33%;" />
+<img src="image-20240622222139771.png" alt="image-20240622222139771" style="zoom:33%;" />
 <p>SDRAM同步动态<strong>随机</strong>存储器，<strong>需要刷新</strong>保证数据不丢失。易失。</p>
 <ul>
 <li>物理Bank：CPU位宽</li>
@@ -310,8 +310,8 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 <h5 id="3121ddr2">3.1.2.1DDR2</h5>
 <p>新增：ODT<strong>片内终结</strong>，内置一个电压岛，吸收信号反射。加倍IO时钟，翻倍DDR1。差分DQS。4n数据预取。</p>
 <p><strong>EMRS阶段：<strong>它用于配置DDR2内存的一些额外参数，如</strong>OCD</strong>功能，校准DQS和DQ数据信号的交叉点。</p>
-<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240622233213018.png" alt="image-20240622233213018" style="zoom:25%;" />
-<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240623003510787.png" alt="image-20240623003510787" style="zoom: 50%;" />
+<img src="image-20240622233213018.png" alt="image-20240622233213018" style="zoom:25%;" />
+<img src="image-20240623003510787.png" alt="image-20240623003510787" style="zoom: 50%;" />
 <p><strong>前置CAS</strong>行地址到列地址的延迟，允许RAS发送后立即发送CAS，所以新增<strong>AL</strong>（附加潜伏期）</p>
 <ul>
 <li>$t^{AL}$（additive latency）典型的DDR2：AL=tRCD-1</li>
@@ -322,8 +322,8 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 <li>$t^{RP}$ (Row Precharge Time)：行预充电时间，关闭当前行并准备下一个行访问所需的时间。</li>
 <li>$t^{RAS}$ (Row Active Time)：行激活时间，即行在被关闭（预充电）前必须保持激活的最小时间。</li>
 </ul>
-<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240623002127083.png" alt="image-20240623002127083" style="zoom: 33%;" />
-<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240623002329807.png" alt="image-20240623002329807" style="zoom:33%;" />
+<img src="image-20240623002127083.png" alt="image-20240623002127083" style="zoom: 33%;" />
+<img src="image-20240623002329807.png" alt="image-20240623002329807" style="zoom:33%;" />
 <p>所以内存参数如16-18-18-36，就是CL-tRCD-tRP-tRAS</p>
 <h4 id="313ddr3-sdram">3.1.3DDR3 SDRAM</h4>
 <ul>
@@ -338,7 +338,7 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 <li>新增Reset、新增ZQ校准</li>
 </ul>
 <h5 id="3131初始化">3.1.3.1初始化</h5>
-<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240623020826503.png" alt="image-20240623020826503" style="zoom: 50%;" />
+<img src="image-20240623020826503.png" alt="image-20240623020826503" style="zoom: 50%;" />
 <ol>
 <li>复位信号：低电平200us</li>
 <li>复位信号拉高前CKE至少保持10ns低电平</li>
@@ -346,7 +346,7 @@ Mealy状态机：输出由当前状态和输入决定。 Moore 状态机：的�
 <li>bank+MRS 配置MR0/1/2/3</li>
 </ol>
 <h3 id="32ddr3实战读写测试">3.2DDR3实战读写测试</h3>
-<img src="C:\Users\a1606\Documents\大学课程\电赛实践课\FPGA\image-20240624155028033.png" alt="image-20240624155028033" style="zoom:33%;" />
+<img src="image-20240624155028033.png" alt="image-20240624155028033" style="zoom:33%;" />
 <p>好失败啊</p>
 <p>大费周章</p>
 <p>磕了三天，毛用没有，调个ip核写个状态机，毫无意义调试了一天，做了一个毫无意义的装置</p>
