@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>包络检波是如何实现解调的？</title>
+    <meta name="description" content="学习通信原理的过程中突然注意到这个问题，觉得简单有趣记录一下
+包络检波在时域上是直觉，我们用手指都能简单画出结果，但是它在数学上的过程是如何被描述的呢？
+1. 引入解析信号 解析信号（Analytic Signal）是一种工具，帮助我们更清楚地分析信号的频率成分。
+给定一个实信号 $s(t) $，它的 解析信号 定义 …">
+    <meta name="keywords" content='blog, gokarna, hugo, 信号'>
+
+    <meta property="og:url" content="https://okonfu.com/posts/%E5%8C%85%E7%BB%9C%E6%A3%80%E6%B3%A2%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E8%A7%A3%E8%B0%83%E7%9A%84/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="包络检波是如何实现解调的？">
+    <meta property="og:description" content="学习通信原理的过程中突然注意到这个问题，觉得简单有趣记录一下
+包络检波在时域上是直觉，我们用手指都能简单画出结果，但是它在数学上的过程是如何被描述的呢？
+1. 引入解析信号 解析信号（Analytic Signal）是一种工具，帮助我们更清楚地分析信号的频率成分。
+给定一个实信号 $s(t) $，它的 解析信号 定义 …">
+    <meta property="og:image" content="https://okonfu.com/images/147919460.jpg">
+    <meta property="og:image:secure_url" content="https://okonfu.com/images/147919460.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="包络检波是如何实现解调的？">
+    <meta name="twitter:description" content="学习通信原理的过程中突然注意到这个问题，觉得简单有趣记录一下
+包络检波在时域上是直觉，我们用手指都能简单画出结果，但是它在数学上的过程是如何被描述的呢？
+1. 引入解析信号 解析信号（Analytic Signal）是一种工具，帮助我们更清楚地分析信号的频率成分。
+给定一个实信号 $s(t) $，它的 解析信号 定义 …">
+    <meta property="twitter:domain" content="https://okonfu.com/posts/%E5%8C%85%E7%BB%9C%E6%A3%80%E6%B3%A2%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E8%A7%A3%E8%B0%83%E7%9A%84/">
+    <meta property="twitter:url" content="https://okonfu.com/posts/%E5%8C%85%E7%BB%9C%E6%A3%80%E6%B3%A2%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E8%A7%A3%E8%B0%83%E7%9A%84/">
+    <meta name="twitter:image" content="https://okonfu.com/images/147919460.jpg">
+
+    
+    <link rel="canonical" href="https://okonfu.com/posts/%E5%8C%85%E7%BB%9C%E6%A3%80%E6%B3%A2%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E8%A7%A3%E8%B0%83%E7%9A%84/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.893af8dd3b65bd0ffe90e7af33847bd6dc9180b8fa6d6659a212a6f4b62d3e01.js" integrity=" "></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://okonfu.com/">
+                <img src='/images/147919460.jpg' alt="avatar">
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://okonfu.com/">okonfu</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/cv/" ><span data-feather='user'></span> CV </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/wkf16" ><span data-feather='github'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
+                <a>
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/" ><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/posts/" ><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/cv/" ><span data-feather='user'></span> CV </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://okonfu.com/tags/" ><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/wkf16" ><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a>
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>包络检波是如何实现解调的？</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle"></small>
+	
+
+	
+          <p class="post-date">October 15, 2024
+           
+          </p>
+	
+
+        <ul class="post-tags">
+          
+           
+             <li class="post-tag"><a href="https://okonfu.com/tags/%E4%BF%A1%E5%8F%B7">信号</a></li>
+           
+         
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <p>学习通信原理的过程中突然注意到这个问题，觉得简单有趣记录一下<br>
+包络检波在时域上是直觉，我们用手指都能简单画出结果，但是它在数学上的过程是如何被描述的呢？<img src=".%5CPNG0.PNG" alt="output (1)"></p>
+<hr>
+<h3 id="1-引入解析信号">1. 引入解析信号</h3>
+<p><strong>解析信号</strong>（Analytic Signal）是一种工具，帮助我们更清楚地分析信号的频率成分。</p>
+<p>给定一个实信号 $s(t) $，它的 <strong>解析信号</strong> 定义为：</p>
+<p>$$
+s_a(t) = s(t) + j \hat{s}(t)
+$$
+其中， $\hat{s}(t) $ 是 $ s(t) $ 的 <strong>希尔伯特变换</strong>
+对于我们的调制信号：
+$$
+s(t) = [A + m(t)] \cos(\omega_c t)
+$$
+有<strong>希尔伯特变换</strong>：
+$$
+\hat{s}(t) = [A + m(t)] H[\cos(\omega_c t)] = [A + m(t)]\sin(\omega_c t)
+$$
+则 ：
+$$
+\begin{aligned}
+s_a(t) &amp;= s(t) + j \hat{s}(t) \
+&amp;= [A + m(t)] [\cos(\omega_c t) + j \sin(\omega_c t)] \
+&amp;= [A + m(t)] e^{j \omega_c t}
+\end{aligned}
+$$
+(其实就是 $\cos(\omega_c t) = \Re{e^{j \omega_c t}}$)</p>
+<hr>
+<h3 id="2-为什么对信号取绝对值就能实现搬移">2. 为什么对信号取绝对值就能实现搬移？</h3>
+<p>通过实验，对AM调制信号过个二极管，也就是<strong>取绝对值</strong>，我们就有如下频谱变化：</p>
+<p><img src=".%5CPNG1.PNG" alt="output (1)"></p>
+<p>这就是所谓包络，包络定义为解析信号的幅度，即：<br>
+$$
+E(t) = |s_a(t)| = \sqrt{[\text{实部}(s_a(t))]^2 + [\text{虚部}(s_a(t))]^2}
+$$
+代入解析信号：</p>
+<p>$$
+\begin{aligned}
+E(t) &amp;= \left| [A + m(t)] e^{j \omega_c t} \right| \
+&amp;= |A + m(t)| \cdot |e^{j \omega_c t}| \
+&amp;= |A + m(t)|
+\end{aligned}
+$$</p>
+<p>由于 $e^{j \omega_c t}$ 的幅度为 1，因此包络为：</p>
+<p>$$
+E(t) = |A + m(t)|
+$$</p>
+<hr>
+<h3 id="3-包络检波过程"><strong>3. 包络检波过程</strong></h3>
+<ol>
+<li><strong>检测包络</strong>：通过解析信号计算或物理电路（如二极管和 RC 滤波器），提取包络 $E(t)$。</li>
+<li><strong>去除直流分量</strong>：由于包络中包含了载波的直流分量$ A $，需要通过高通滤波或减去平均值来得到原始信号 $m(t)$。</li>
+</ol>
+<p>因此，恢复出的信号为：</p>
+<p>$$
+m_{\text{recovered}}(t) = E(t) - A = |A + m(t)| - A
+$$
+如果确保调制信号$ m(t) $ 的幅度使得 A$ + m(t) \geq 0 $ (不过度调制)，那么绝对值运算不会影响信号的形状，得到的就是原始的基带信号。</p>
+<hr>
+<h3 id="4-欸不对"><strong>4. 欸？不对！</strong></h3>
+<p>回到一开始的时域图，我们一眼就能看出，明显还有大量的高频信号残留，而不是我们期望的低频基带信号，包括频谱也是，我们能在两端隐约看见高频信号的一角，这是怎么回事，为什么和解析信号计算的不一样？</p>
+<p><strong>解析信号与实数信号在频谱处理上本质上不同</strong>，这导致了绝对值运算的不同表现。<br>
+在频域中，<strong>时域</strong>的非线性操作（如取绝对值）对应于频域中频率成分的相互作用。特别是，对于调幅信号 $\cos(\omega_c t) $，取绝对值后的结果是引入了新的频率分量，特别是<strong>二倍频</strong>和更高次谐波。这是因为绝对值运算改变了信号的对称性和周期性。</p>
+<p>举个简单例子，假设我们对 $ \cos(\omega_c t) $取绝对值，它可以表示为：
+$$
+|\cos(\omega_c t)| = \frac{2}{\pi} - \frac{4}{\pi} \cos(2 \omega_c t) + \text{高次谐波}
+$$</p>
+<p>而<strong>解析信号</strong>是一种特殊的信号，它通过<strong>希尔伯特变换</strong>去除了负频率成分，只保留正频率。</p>
+<p>$$
+|e^{j \omega_c t}| =  1
+$$</p>
+<p>解析信号的幅度（即绝对值）是：
+$$
+|s_a(t)| = \left| [A + m(t)] e^{j \omega_c t} \right| = |A + m(t)|
+$$
+我们看到，解析信号的绝对值只包含了调制信号$ A + m(t) $，没有包含任何载波频率的成分。之所以这样，是因为解析信号已经将负频率部分去掉了，而取绝对值操作对频率没有引入新的高频成分。因此，<strong>解析信号的绝对值等价于包络</strong>。所以我们在包络检波时，除了滤除直流分量，还要试用<strong>低通滤波器</strong>。</p>
+<hr>
+<p><strong>参考文献</strong></p>
+<ul>
+<li>Haykin, S. (2001). <em>Communication Systems</em>. John Wiley &amp; Sons.</li>
+<li>Proakis, J. G., &amp; Salehi, M. (2007). <em>Fundamentals of Communication Systems</em>. Pearson.</li>
+</ul>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
+
+    
+    
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1-引入解析信号">1. 引入解析信号</a></li>
+            <li><a href="#2-为什么对信号取绝对值就能实现搬移">2. 为什么对信号取绝对值就能实现搬移？</a></li>
+            <li><a href="#3-包络检波过程"><strong>3. 包络检波过程</strong></a></li>
+            <li><a href="#4-欸不对"><strong>4. 欸？不对！</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+
+    
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2024 The Marauders</span>
+    
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
