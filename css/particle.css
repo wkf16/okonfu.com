@@ -1,16 +1,31 @@
 :root {
-    --bg-color: #000000;
+    --bg-color: #1a1a1a;
+    /* Revert to dark gray */
     --text-color: #e0e0e0;
     --accent-color: #39c5bb;
     --font-main: 'Outfit', sans-serif;
 }
 
-/* Force entire site background to black */
-body,
-html,
-main,
-footer,
-.footer {
+/*
+   Remove global body !important overrides to allow theme toggle to work
+*/
+
+/* Only apply specific hacks if needed, but rely on theme for main colors if possible.
+   However, user wants "this gray". The original theme might have a different black/gray.
+   We will try to force the dark mode color specifically, but allow light mode.
+*/
+
+/* Force dark mode specific background if the user prefers this specific gray over the theme's default dark */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+}
+
+/* If the theme adds a class for dark mode, usually 'dark' or 'dark-theme' */
+body.dark-theme,
+body.dark {
     background-color: var(--bg-color) !important;
     color: var(--text-color) !important;
 }
