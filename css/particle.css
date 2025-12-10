@@ -24,11 +24,19 @@ footer,
     border-bottom: none !important;
 }
 
+/* Hide Header Avatar */
+.header .avatar {
+    display: none !important;
+}
+
 /* Nav links styling to match demo */
 .nav-link a,
 .nav-brand,
-.nav-item a {
+.nav-item a,
+.header-nav {
     color: var(--text-color) !important;
+    font-family: var(--font-main) !important;
+    /* Enforce Outfit font */
     font-weight: 300 !important;
     transition: color 0.3s ease;
 }
