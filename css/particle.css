@@ -1,10 +1,18 @@
 :root {
+    /* Override theme's dark primary color to match our demo's gray (#1a1a1a = 26, 26, 26) 
+       This ensures Header and Body share the exact same color, fixing the mismatch. */
+    --dark-primary-color: 26, 26, 26;
     --bg-color: #1a1a1a;
-    /* Revert to dark gray */
     --text-color: #e0e0e0;
     --accent-color: #39c5bb;
     --font-main: 'Outfit', sans-serif;
 }
+
+/* 
+    We do NOT manually set body background-color here. 
+    We let the theme apply 'rgb(var(--dark-primary-color))' to html/body.
+    This preserves the light/dark toggle functionality.
+*/
 
 /*
    Remove global body !important overrides to allow theme toggle to work
@@ -16,19 +24,10 @@
 */
 
 /* Force dark mode specific background if the user prefers this specific gray over the theme's default dark */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: var(--bg-color);
-        color: var(--text-color);
-    }
-}
+
 
 /* If the theme adds a class for dark mode, usually 'dark' or 'dark-theme' */
-body.dark-theme,
-body.dark {
-    background-color: var(--bg-color) !important;
-    color: var(--text-color) !important;
-}
+
 
 /* Header Overrides - Make it disappear into the black */
 .header {
