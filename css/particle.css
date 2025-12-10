@@ -1,0 +1,178 @@
+:root {
+    /* Override theme's dark primary color to match our demo's gray (#1a1a1a = 26, 26, 26) 
+       This ensures Header and Body share the exact same color, fixing the mismatch. */
+    --dark-primary-color: 26, 26, 26;
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --accent-color: #39c5bb;
+    --font-main: 'Outfit', sans-serif;
+}
+
+/* 
+    We do NOT manually set body background-color here. 
+    We let the theme apply 'rgb(var(--dark-primary-color))' to html/body.
+    This preserves the light/dark toggle functionality.
+*/
+
+/*
+   Remove global body !important overrides to allow theme toggle to work
+*/
+
+/* Only apply specific hacks if needed, but rely on theme for main colors if possible.
+   However, user wants "this gray". The original theme might have a different black/gray.
+   We will try to force the dark mode color specifically, but allow light mode.
+*/
+
+/* Force dark mode specific background if the user prefers this specific gray over the theme's default dark */
+
+
+/* If the theme adds a class for dark mode, usually 'dark' or 'dark-theme' */
+
+
+/* Header Overrides - Make it disappear into the black */
+.header {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    /* Remove blur if it causes color shift */
+    box-shadow: none !important;
+    border-bottom: none !important;
+}
+
+/* Hide Header Avatar */
+.header .avatar {
+    display: none !important;
+}
+
+/* Nav links styling - Default to theme color (which is black in light mode, white in dark) */
+.nav-link a,
+.nav-item a,
+.header-nav {
+    font-family: var(--font-main) !important;
+    font-weight: 300 !important;
+    transition: color 0.3s ease;
+    /* Removed global !important color override to let theme handle light/dark text colors */
+}
+
+/* Specific override for Top Left Brand "okonfu" */
+.nav-brand {
+    font-family: var(--font-main) !important;
+    font-weight: 300 !important;
+    transition: color 0.3s ease;
+}
+
+
+/* Light Mode Defaults (Active when body HAS .light-theme) */
+body.light-theme .nav-brand {
+    color: #000000 !important;
+    /* Request: Black in Day Mode */
+}
+
+body.light-theme .home-about h3,
+body.light-theme .subtitle {
+    color: var(--accent-color) !important;
+    /* Request: Teal in Day Mode */
+}
+
+/* Dark Mode Overrides */
+body.dark-theme .nav-brand,
+body.dark-theme .nav-link a,
+body.dark-theme .home-about h3,
+body.dark-theme .subtitle {
+    color: var(--text-color) !important;
+}
+
+.nav-link a:hover,
+.nav-brand:hover,
+.nav-item a:hover {
+    color: var(--accent-color) !important;
+}
+
+/* Main Content centering matching demo */
+.main-content,
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    position: relative;
+    z-index: 1;
+}
+
+.home-about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* Request: Disable selection */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Avatar styling */
+.avatar img,
+.avatar .size-m {
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 50% !important;
+    object-fit: cover;
+    border: 3px solid var(--accent-color) !important;
+    box-shadow: 0 0 20px rgba(57, 197, 187, 0.3) !important;
+}
+
+/* Canvas Container */
+.canvas-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    overflow: visible;
+}
+
+#particle-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Hide original text */
+.home-about h1 {
+    display: none !important;
+}
+
+/* Subtitle */
+.subtitle,
+.home-about h3 {
+    margin-top: 1rem;
+    position: relative;
+    top: -5.5rem;
+    font-weight: 300;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    letter-spacing: 0.05em;
+    text-align: center;
+    font-style: italic;
+    color: var(--text-color) !important;
+}
+
+/* Footer to blend in */
+.footer {
+    border-top: none !important;
+    opacity: 0.6;
+}
+
+/* Dark mode toggle override if needed */
+.dark-theme-toggle {
+    /* visible */
+}
+
+/* Social icons invert */
+.social-icon img {
+    filter: invert(1);
+    opacity: 0.7;
+}
