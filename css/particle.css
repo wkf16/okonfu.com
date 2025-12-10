@@ -2,34 +2,44 @@
     --bg-color: #000000;
     --text-color: #e0e0e0;
     --accent-color: #39c5bb;
-    /* Teal accent color */
     --font-main: 'Outfit', sans-serif;
 }
 
-body.particle-theme,
-body {
+/* Force entire site background to black */
+body,
+html,
+main,
+footer,
+.footer {
     background-color: var(--bg-color) !important;
-    color: var(--text-color);
+    color: var(--text-color) !important;
 }
 
-/* Header Overrides */
+/* Header Overrides - Make it disappear into the black */
 .header {
     background: transparent !important;
-    backdrop-filter: blur(5px);
+    backdrop-filter: none !important;
+    /* Remove blur if it causes color shift */
+    box-shadow: none !important;
+    border-bottom: none !important;
 }
 
+/* Nav links styling to match demo */
 .nav-link a,
-.nav-brand {
+.nav-brand,
+.nav-item a {
     color: var(--text-color) !important;
+    font-weight: 300 !important;
     transition: color 0.3s ease;
 }
 
 .nav-link a:hover,
-.nav-brand:hover {
+.nav-brand:hover,
+.nav-item a:hover {
     color: var(--accent-color) !important;
 }
 
-/* Main Content */
+/* Main Content centering matching demo */
 .main-content,
 #content {
     display: flex;
@@ -37,7 +47,6 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 80vh;
-    /* Ensure full visible height */
     position: relative;
     z-index: 1;
 }
@@ -49,20 +58,22 @@ body {
     width: 100%;
 }
 
-.avatar img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+/* Avatar styling */
+.avatar img,
+.avatar .size-m {
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 50% !important;
     object-fit: cover;
-    border: 3px solid var(--accent-color);
-    box-shadow: 0 0 20px rgba(57, 197, 187, 0.3);
+    border: 3px solid var(--accent-color) !important;
+    box-shadow: 0 0 20px rgba(57, 197, 187, 0.3) !important;
 }
 
+/* Canvas Container */
 .canvas-container {
     position: relative;
     width: 100%;
     height: 300px;
-    /* Fixed height for canvas area */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,11 +87,12 @@ body {
     height: 100%;
 }
 
-/* Hide original h1 as it is replaced by particles */
+/* Hide original text */
 .home-about h1 {
-    display: none;
+    display: none !important;
 }
 
+/* Subtitle */
 .subtitle,
 .home-about h3 {
     margin-top: 1rem;
@@ -90,21 +102,22 @@ body {
     letter-spacing: 0.05em;
     text-align: center;
     font-style: italic;
-    color: var(--text-color);
+    color: var(--text-color) !important;
 }
 
-/* Social icons subtle styling */
-.social-icons {
-    margin-top: 2rem;
+/* Footer to blend in */
+.footer {
+    border-top: none !important;
+    opacity: 0.6;
 }
 
+/* Dark mode toggle override if needed */
+.dark-theme-toggle {
+    /* visible */
+}
+
+/* Social icons invert */
 .social-icon img {
     filter: invert(1);
-    /* Ensure icons are visible on black */
     opacity: 0.7;
-    transition: opacity 0.3s;
-}
-
-.social-icon:hover img {
-    opacity: 1;
 }
