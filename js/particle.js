@@ -161,3 +161,34 @@ if (document.fonts) {
         animate();
     }, 500);
 }
+// Theme synchronization for CSS selectors
+function syncThemeClass() {
+    const darkThemeLink = document.getElementById('dark-theme');
+    const isDark = darkThemeLink && !darkThemeLink.disabled;
+    
+    if (isDark) {
+        document.body.classList.add('dark-theme');
+        document.body.classList.remove('light-theme');
+    } else {
+        document.body.classList.add('light-theme');
+        document.body.classList.remove('dark-theme');
+    }
+}
+
+// Initial sync
+syncThemeClass();
+
+// Watch for changes on the disabled attribute of the dark-theme link
+// This handles the clicks on the existing theme toggle button which toggles the stylesheet
+const darkThemeLink = document.getElementById('dark-theme');
+if (darkThemeLink) {
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'disabled') {
+                syncThemeClass();
+            }
+        });
+    });
+    
+    observer.observe(darkThemeLink, { attributes: true });
+}

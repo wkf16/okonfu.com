@@ -60,34 +60,25 @@
     transition: color 0.3s ease;
 }
 
-/* Light Mode Defaults (Active when body does NOT have .dark-theme) */
-body:not(.dark-theme) .nav-brand {
+
+/* Light Mode Defaults (Active when body HAS .light-theme) */
+body.light-theme .nav-brand {
     color: #000000 !important;
     /* Request: Black in Day Mode */
 }
 
-body:not(.dark-theme) .home-about h3,
-body:not(.dark-theme) .subtitle {
+body.light-theme .home-about h3,
+body.light-theme .subtitle {
     color: var(--accent-color) !important;
     /* Request: Teal in Day Mode */
 }
 
-/* Dark Mode Overrides (Explicitly set to white/gray to match demo) */
+/* Dark Mode Overrides */
 body.dark-theme .nav-brand,
 body.dark-theme .nav-link a,
 body.dark-theme .home-about h3,
 body.dark-theme .subtitle {
     color: var(--text-color) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-
-    body:not(.light-theme) .nav-brand,
-    body:not(.light-theme) .nav-link a,
-    body:not(.light-theme) .home-about h3,
-    body:not(.light-theme) .subtitle {
-        color: var(--text-color) !important;
-    }
 }
 
 .nav-link a:hover,
@@ -113,6 +104,11 @@ body.dark-theme .subtitle {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    /* Request: Disable selection */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* Avatar styling */
@@ -153,8 +149,10 @@ body.dark-theme .subtitle {
 .subtitle,
 .home-about h3 {
     margin-top: 1rem;
+    position: relative;
+    top: -5.5rem;
     font-weight: 300;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     opacity: 0.6;
     letter-spacing: 0.05em;
     text-align: center;
