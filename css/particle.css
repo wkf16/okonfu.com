@@ -43,16 +43,51 @@
     display: none !important;
 }
 
-/* Nav links styling to match demo */
+/* Nav links styling - Default to theme color (which is black in light mode, white in dark) */
 .nav-link a,
-.nav-brand,
 .nav-item a,
 .header-nav {
-    color: var(--text-color) !important;
     font-family: var(--font-main) !important;
-    /* Enforce Outfit font */
     font-weight: 300 !important;
     transition: color 0.3s ease;
+    /* Removed global !important color override to let theme handle light/dark text colors */
+}
+
+/* Specific override for Top Left Brand "okonfu" */
+.nav-brand {
+    font-family: var(--font-main) !important;
+    font-weight: 300 !important;
+    transition: color 0.3s ease;
+}
+
+/* Light Mode Defaults (Active when body does NOT have .dark-theme) */
+body:not(.dark-theme) .nav-brand {
+    color: #000000 !important;
+    /* Request: Black in Day Mode */
+}
+
+body:not(.dark-theme) .home-about h3,
+body:not(.dark-theme) .subtitle {
+    color: var(--accent-color) !important;
+    /* Request: Teal in Day Mode */
+}
+
+/* Dark Mode Overrides (Explicitly set to white/gray to match demo) */
+body.dark-theme .nav-brand,
+body.dark-theme .nav-link a,
+body.dark-theme .home-about h3,
+body.dark-theme .subtitle {
+    color: var(--text-color) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    body:not(.light-theme) .nav-brand,
+    body:not(.light-theme) .nav-link a,
+    body:not(.light-theme) .home-about h3,
+    body:not(.light-theme) .subtitle {
+        color: var(--text-color) !important;
+    }
 }
 
 .nav-link a:hover,
