@@ -192,13 +192,13 @@
 <li><strong>Hardware and Embedded</strong>: STM32, ESP32, Arduino, Verilog/FPGA; PCB design, signal-chain and circuit debugging.</li>
 </ul>
 <h2 id="top-project-achievements">Top Project Achievements</h2>
-<h3 id="atomic-swarm-robot-platform">ATOMIC Swarm Robot Platform &ndash; HKUST(GZ) ATOMIC Lab (Research Assistant) (May 2026 &ndash; present)</h3>
+<h3 id="atomic-swarm-robot-platform">ATOMIC Swarm Robot Platform - HKUST(GZ) ATOMIC Lab (Research Assistant) (May 2026 - present)</h3>
 <ul>
 <li>End-to-end swarm stack ownership across 4 layers: KiCad PCBs, 3D-printed housings, C firmware on nRF52833, Flask + Socket.IO web host. Indoor localization via HTC Vive Lighthouse v1 + TS4231 photodiodes, 50&nbsp;Hz pose broadcast on bare-RADIO 2.4&nbsp;GHz adv (no SoftDevice; firmware fits in 128&nbsp;KB).</li>
 <li>Designed and prototyped a monocular vision calibration &amp; ground-truth rig: an ArUco quad-sheet anchors a metric world frame via homography (three more sheets extend coverage and catch base-station drift) and a YOLO detector localizes the robot, recovering world coordinates from one overhead photo. Single-frame repeatability &asymp;3&nbsp;mm on markers, &asymp;22&nbsp;mm on the robot. Double duty: a vision ground truth for Lighthouse accuracy, and the source of a refreshed affine calibration fed to the swarm over the existing OTA channel.</li>
 <li>Shipped three PRs in onboarding sprint: <code>#18 fix/webUI</code> (viewport-fit map + target feedback), <code>#19 feat/api</code> (Flask REST/SSE API: POST target, GET pose stream, validated by automated trajectory test), <code>#20 feat/ota</code> (OTA affine-calibration push + status-broadcast scaffold + recalibration tooling).</li>
 </ul>
-<h3 id="open-yachiyo">Open-Yachiyo: AI-native desktop agent framework (300+ GitHub stars) (2026 &ndash; present)</h3>
+<h3 id="open-yachiyo">Open-Yachiyo: AI-native desktop agent framework (300+ GitHub stars) (2026 - present)</h3>
 <p><strong>GitHub</strong>: <a href="https://github.com/sdyzjx/open-yachiyo">https://github.com/sdyzjx/open-yachiyo</a></p>
 <ul>
 <li><strong>Co-architect and core developer</strong> of a from-scratch implementation of the ReAct (Reason-Act-Observe) paradigm, with an Event Bus tool-calling chain and SSE JSON-RPC full-link observability for live, step-through inspection of in-flight agent runs; inspired by 『超かぐや姫！』.</li>
@@ -206,13 +206,13 @@
 <li>Second, implementing the Reason-Act-Observe loop hands-on gave a genuine understanding of how an agent iterates decisions in uncertain environments.</li>
 <li><strong>National-level SRTP</strong> project; selected as <strong>Fuzhou University Outstanding Graduation Design</strong>.</li>
 </ul>
-<h3 id="insole-blanking-robot">Insole blanking robot with adaptive edge detection and FSPS-BIT* (2023 &ndash; 2024)</h3>
+<h3 id="insole-blanking-robot">Insole blanking robot with adaptive edge detection and FSPS-BIT* (2023 - 2024)</h3>
 <p><strong>GitHub</strong>: <a href="https://github.com/HaoHaoRight/Robotics_of_ABB1200">https://github.com/HaoHaoRight/Robotics_of_ABB1200</a></p>
 <ul>
 <li>A factory robotic-arm system for insole blanking with an FSPS-BIT* motion planner in 3-D operating space, benchmarked against RRT*, FMT*, Informed-RRT*, and BIT*.</li>
 <li>Owned MATLAB implementation of the FSPS-BIT* planner and the UR5 simulation scene, contributing to the paper <a href="#pub-2">[2]</a> and the granted invention patent <a href="#pub-4">[4]</a>.</li>
 </ul>
-<h3 id="edge-ai-rice-pest">Edge-AI Real-time Rice-Pest Monitoring and Collaborative Trapping System (2024 &ndash; 2026)</h3>
+<h3 id="edge-ai-rice-pest">Edge-AI Real-time Rice-Pest Monitoring and Collaborative Trapping System (2024 - 2026)</h3>
 <ul>
 <li>Built a 1,500-image, 12-class real-field dataset and a lightweight perception/deployment pipeline (Mixed Aggregation backbone, Ghost Conv pre-head, TensorRT on Jetson Xavier NX, ESP32 low-power actuation, LoRa multi-node mesh).</li>
 <li>Achieves <strong>96.1% mAP@0.5 at 59.4&nbsp;FPS</strong> on edge hardware (+0.7% accuracy, +19.6% speed vs. YOLOv13 baseline); top mAP in 6/9 degraded-scene tests; 14.8&nbsp;ms closed-loop + 36.8&nbsp;ms end-to-end latency.</li>

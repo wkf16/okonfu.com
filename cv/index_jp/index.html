@@ -194,7 +194,7 @@
 <li><strong>ハードウェア・組み込み</strong>：STM32、ESP32、Arduino、Verilog/FPGA；PCB設計、信号系・回路のデバッグ。</li>
 </ul>
 <h2 id="主なプロジェクト">主なプロジェクト</h2>
-<h3 id="atomic-群ロボットプラットフォーム">ATOMIC 群ロボットプラットフォーム &ndash; HKUST(GZ) ATOMIC Lab（リサーチアシスタント）（2026年5月～現在）</h3>
+<h3 id="atomic-群ロボットプラットフォーム">ATOMIC 群ロボットプラットフォーム - HKUST(GZ) ATOMIC Lab（リサーチアシスタント）（2026年5月～現在）</h3>
 <ul>
 <li>群ロボットシステムの4層すべてをエンドツーエンドで担当：KiCad による PCB、3Dプリント筐体、nRF52833 上の C ファームウェア、Flask + Socket.IO の Web ホスト。屋内測位は HTC Vive Lighthouse v1 + TS4231 フォトダイオードで行い、ベア RADIO の 2.4&nbsp;GHz アドバタイズで姿勢を 50&nbsp;Hz でブロードキャスト（SoftDevice 不使用；ファームウェアは 128&nbsp;KB に収まる）。</li>
 <li>単眼ビジョンによるキャリブレーション・グラウンドトゥルース装置を設計・試作：ArUco の4マーカーシートがホモグラフィによりメートル単位の世界座標系を固定し（追加の3枚で範囲を広げ、ベースステーションのずれを検出）、YOLO 検出器がロボットの位置を求め、俯瞰写真1枚から世界座標を復元する。単一フレームの再現性はマーカーで約 3&nbsp;mm、ロボットで約 22&nbsp;mm。二つの役割を兼ねる：Lighthouse 測位精度を評価するビジョン基準値、および既存の OTA チャネルで群に配信する更新版アフィンキャリブレーションの生成元。</li>
@@ -208,13 +208,13 @@
 <li>第二に、Reason-Act-Observe ループを自らの手で実装したことで、不確実な環境でエージェントがどのように意思決定を反復するのかを本当に理解できた。</li>
 <li><strong>国家級 SRTP（大学生創新訓練）</strong>プロジェクト；<strong>福州大学優秀卒業設計</strong>に選出。</li>
 </ul>
-<h3 id="インソール打ち抜きロボット">適応的エッジ検出と FSPS-BIT* によるインソール打ち抜きロボット（2023 &ndash; 2024）</h3>
+<h3 id="インソール打ち抜きロボット">適応的エッジ検出と FSPS-BIT* によるインソール打ち抜きロボット（2023 - 2024）</h3>
 <p><strong>GitHub</strong>：<a href="https://github.com/HaoHaoRight/Robotics_of_ABB1200">https://github.com/HaoHaoRight/Robotics_of_ABB1200</a></p>
 <ul>
 <li>インソール打ち抜き用の工場向けロボットアームシステム。3次元作業空間で FSPS-BIT* 動作計画器を用い、RRT*、FMT*、Informed-RRT*、BIT* と比較評価した。</li>
 <li>FSPS-BIT* 計画器の MATLAB 実装と UR5 シミュレーション環境を担当し、論文 <a href="#pub-2">[2]</a> および登録済み発明特許 <a href="#pub-4">[4]</a> に貢献。</li>
 </ul>
-<h3 id="エッジ-ai-稲害虫">エッジ AI によるリアルタイム稲害虫モニタリング・協調捕獲システム（2024 &ndash; 2026）</h3>
+<h3 id="エッジ-ai-稲害虫">エッジ AI によるリアルタイム稲害虫モニタリング・協調捕獲システム（2024 - 2026）</h3>
 <ul>
 <li>1,500枚・12クラスの実圃場データセットと、軽量な認識・デプロイパイプラインを構築（Mixed Aggregation バックボーン、Ghost Conv プレヘッド、Jetson Xavier NX 上の TensorRT、ESP32 による低消費電力駆動、LoRa マルチノードメッシュ）。</li>
 <li>エッジハードウェア上で <strong>96.1% mAP@0.5、59.4&nbsp;FPS</strong> を達成（YOLOv13 ベースライン比で精度 +0.7%、速度 +19.6%）；劣化シーン9種中6種で mAP 最高；閉ループ遅延 14.8&nbsp;ms ＋ エンドツーエンド遅延 36.8&nbsp;ms。</li>

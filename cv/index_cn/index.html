@@ -194,7 +194,7 @@
 <li><strong>硬件与嵌入式</strong>：STM32、ESP32、Arduino、Verilog/FPGA；PCB 设计，信号链与电路调试。</li>
 </ul>
 <h2 id="代表项目">代表项目</h2>
-<h3 id="atomic-集群机器人平台">ATOMIC 集群机器人平台 &ndash; 香港科技大学（广州）ATOMIC 实验室（研究助理）（2026 年 5 月至今）</h3>
+<h3 id="atomic-集群机器人平台">ATOMIC 集群机器人平台 - 香港科技大学（广州）ATOMIC 实验室（研究助理）（2026 年 5 月至今）</h3>
 <ul>
 <li>端到端负责集群系统全部 4 层：KiCad PCB、3D 打印外壳、nRF52833 上的 C 固件、Flask + Socket.IO 网页上位机。室内定位采用 HTC Vive Lighthouse v1 + TS4231 光电二极管，通过裸 RADIO 2.4&nbsp;GHz 广播以 50&nbsp;Hz 播发位姿（不使用 SoftDevice；固件控制在 128&nbsp;KB 以内）。</li>
 <li>设计并搭建了单目视觉标定与真值系统：一张 ArUco 四码标定板通过单应性锚定米制世界坐标系（另外三张标定板扩大覆盖范围并检测基站漂移），YOLO 检测器定位机器人，从一张俯拍照片即可还原世界坐标。单帧重复精度：标记约 3&nbsp;mm，机器人约 22&nbsp;mm。一物两用：既作为 Lighthouse 定位精度的视觉真值，也用于生成新的仿射标定参数，经现有 OTA 通道下发给集群。</li>
@@ -208,13 +208,13 @@
 <li>第二，亲手实现 Reason-Act-Observe 循环，真正理解了智能体如何在不确定环境中迭代决策。</li>
 <li><strong>国家级大学生创新训练（SRTP）</strong>项目；入选<strong>福州大学优秀毕业设计</strong>。</li>
 </ul>
-<h3 id="鞋垫冲裁机器人">基于自适应边缘检测与 FSPS-BIT* 的鞋垫冲裁机器人（2023 &ndash; 2024）</h3>
+<h3 id="鞋垫冲裁机器人">基于自适应边缘检测与 FSPS-BIT* 的鞋垫冲裁机器人（2023 - 2024）</h3>
 <p><strong>GitHub</strong>：<a href="https://github.com/HaoHaoRight/Robotics_of_ABB1200">https://github.com/HaoHaoRight/Robotics_of_ABB1200</a></p>
 <ul>
 <li>面向鞋垫冲裁的工厂机械臂系统，在三维作业空间中采用 FSPS-BIT* 运动规划器，并与 RRT*、FMT*、Informed-RRT*、BIT* 进行对比。</li>
 <li>负责 FSPS-BIT* 规划器的 MATLAB 实现和 UR5 仿真场景，贡献于论文 <a href="#pub-2">[2]</a> 和已授权发明专利 <a href="#pub-4">[4]</a>。</li>
 </ul>
-<h3 id="边缘-ai-稻田害虫">边缘 AI 实时稻田害虫监测与协同诱捕系统（2024 &ndash; 2026）</h3>
+<h3 id="边缘-ai-稻田害虫">边缘 AI 实时稻田害虫监测与协同诱捕系统（2024 - 2026）</h3>
 <ul>
 <li>构建了 1,500 张图像、12 类的真实田间数据集，以及轻量化感知/部署流程（Mixed Aggregation 主干网络、Ghost Conv 预检测头、Jetson Xavier NX 上的 TensorRT、ESP32 低功耗执行、LoRa 多节点组网）。</li>
 <li>在边缘硬件上达到 <strong>96.1% mAP@0.5、59.4&nbsp;FPS</strong>（相比 YOLOv13 基线精度 +0.7%、速度 +19.6%）；9 项退化场景测试中 6 项 mAP 最高；闭环延迟 14.8&nbsp;ms + 端到端延迟 36.8&nbsp;ms。</li>
