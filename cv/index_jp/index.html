@@ -181,44 +181,46 @@
 <strong>ウェブサイト</strong>: <a href="https://okonfu.com">https://okonfu.com</a><br>
 <strong>GitHub</strong>: <a href="https://github.com/wkf16">https://github.com/wkf16</a></p>
 <h2 id="学歴">学歴</h2>
-<h3 id="福州大学">福州大学*、電子情報工学、工学士（2026年6月 卒業見込み）</h3>
+<h3 id="福州大学">福州大学 | 電子情報工学 工学士（2026年6月 卒業見込み）</h3>
+<p><em>中国「211工程」および「双一流」建設大学</em></p>
 <ul>
-<li>GPA：3.18/4.0（学科内上位 22%）。</li>
-<li>主な履修科目：電磁場と電磁波（91）、Cプログラミング（98）、オブジェクト指向プログラミング（90）、Java（95）、コンピュータネットワーク（97）、マイクロプロセッサ原理（91）、離散信号処理（99）、デジタル画像処理（95）。</li>
+<li><strong>学業成績：</strong>GPA 3.18 / 4.0（学科内上位 22%）。</li>
+<li><strong>主な履修科目：</strong>離散信号処理（99）、Cプログラミング（98）、コンピュータネットワーク（97）、Javaプログラミング（95）、デジタル画像処理（95）、マイクロプロセッサ原理（91）、電磁場と電磁波（91）、オブジェクト指向プログラミング（90）。</li>
 </ul>
-<p><small>* 福州大学（中国「211工程」／「双一流」建設大学）。</small></p>
 <h2 id="スキル">スキル</h2>
 <ul>
-<li><strong>語学</strong>：TOEFL iBT 82（2025年；MyBest 85）、JLPT N1（読解満点）。</li>
-<li><strong>プログラミング・システム</strong>：C/C++、Python、MATLAB、Java、TypeScript、Node.js、CUDA、WebSocket、JSON-RPC、Flask + Socket.IO。</li>
-<li><strong>ハードウェア・組み込み</strong>：STM32、ESP32、Arduino、Verilog/FPGA；PCB設計、信号系・回路のデバッグ。</li>
+<li><strong>語学：</strong>TOEFL iBT 82（MyBest 85）、JLPT N1（読解満点）。</li>
+<li><strong>プログラミング・システム：</strong>C、C++、Python、MATLAB、Java、TypeScript、Node.js、CUDA、Linux、Flask、Socket.IO、WebSocket、JSON RPC。</li>
+<li><strong>組み込み・ハードウェア：</strong>STM32、ESP32、Nordic nRF52 シリーズ、Arduino、Verilog、FPGA、KiCad による PCB レイアウト、信号系の解析、回路デバッグ。</li>
 </ul>
-<h2 id="主なプロジェクト">主なプロジェクト</h2>
-<h3 id="atomic-群ロボットプラットフォーム">ATOMIC 群ロボットプラットフォーム - HKUST(GZ) ATOMIC Lab（リサーチアシスタント）（2026年5月～現在）</h3>
+<h2 id="研究開発プロジェクト">研究・開発プロジェクト</h2>
+<h3 id="atomic-群ロボットプラットフォーム">ATOMIC 群ロボットプラットフォーム | HKUST(GZ) ATOMIC Lab</h3>
+<p><em>リサーチアシスタント（2026年5月～現在）</em></p>
 <ul>
-<li>群ロボットシステムの4層すべてをエンドツーエンドで担当：KiCad による PCB、3Dプリント筐体、nRF52833 上の C ファームウェア、Flask + Socket.IO の Web ホスト。屋内測位は HTC Vive Lighthouse v1 + TS4231 フォトダイオードで行い、ベア RADIO の 2.4&nbsp;GHz アドバタイズで姿勢を 50&nbsp;Hz でブロードキャスト（SoftDevice 不使用；ファームウェアは 128&nbsp;KB に収まる）。</li>
-<li>単眼ビジョンによるキャリブレーション・グラウンドトゥルース装置を設計・試作：ArUco の4マーカーシートがホモグラフィによりメートル単位の世界座標系を固定し（追加の3枚で範囲を広げ、ベースステーションのずれを検出）、YOLO 検出器がロボットの位置を求め、俯瞰写真1枚から世界座標を復元する。単一フレームの再現性はマーカーで約 3&nbsp;mm、ロボットで約 22&nbsp;mm。二つの役割を兼ねる：Lighthouse 測位精度を評価するビジョン基準値、および既存の OTA チャネルで群に配信する更新版アフィンキャリブレーションの生成元。</li>
-<li>着任直後のスプリントで3件の PR を完成：<code>#18 fix/webUI</code>（ビューポートに合わせた地図表示＋目標点フィードバック）、<code>#19 feat/api</code>（Flask REST/SSE API：目標点の POST、姿勢ストリームの GET、自動軌道テストで検証）、<code>#20 feat/ota</code>（OTA によるアフィンキャリブレーション配信＋ステータスブロードキャストの骨組み＋再キャリブレーションツール）。</li>
+<li><strong>フルスタックの群ロボット基盤。</strong> 群ロボットプラットフォーム全体を4つの層にわたって担当：独自設計の KiCad 回路基板、3Dプリントの機構筐体、nRF52833 上のベアメタル C ファームウェア、Socket.IO を用いた Flask の Web ホスト。HTC Vive Lighthouse ベースステーションと TS4231 光センサを組み合わせた屋内測位を実装し、SoftDevice を使わず 2.4 GHz の無線パケットで姿勢を 50 Hz で直接ブロードキャストすることで、ファームウェア全体を 128 KB 以内に収めた。</li>
+<li><strong>視覚による検証と空間キャリブレーション。</strong> 俯瞰の単眼カメラ装置を構築し、絶対的な空間基準を確立してベースステーションのずれを補正。複数枚の ArUco マーカーシートからホモグラフィでメートル座標を求め、独自の YOLO モデルで1フレームからロボットの位置を追跡し、再現性はマーカーで約 3 mm、ロボットで約 22 mm を達成。このシステムは Lighthouse 測位の視覚的な基準値を提供し、更新したアフィンキャリブレーションパラメータを無線で群に配信する。</li>
+<li><strong>迅速なシステム統合と導入。</strong> 着任初期に3つの中核的な基盤マイルストーンを完成させ、プラットフォームの成熟を加速：操作画面を刷新してビューポートに応じた地図表示とリアルタイムの目標フィードバックを実現、自動軌道テストで検証した Flask REST と SSE のストリーミング基盤を設計、稼働中の全ロボットに実行時キャリブレーションデータを配信する無線デプロイツールを構築。</li>
+<li><strong>EWSN 2026 Swarm Chess デモ。</strong> Swarm Chess を共同開発：チェスの駒一つひとつが AtomBot ロボットで、LLM エージェントが実機の群ロボットを通じて対局する。エージェントは ReAct ループで動作し、4つのチェス用ツール（盤面取得、指し手、配置、投了）を通じてのみ盤面を把握・操作する。盤面管理エンジンが各指し手を検証し、WHCA* による複数ロボット経路計画器がそれをロボットの目標点に変換する。エージェント対エージェントとエージェント対人間の2モードに対応し、コントロールハブ、壁面、床面の3画面を同期させてエージェントの推論、ツール呼び出し、ロボットの動きを表示する。共同筆頭著者として、ドレスデンで開催された EWSN 2026 にて口頭デモ発表を行った <a href="#pub-1">[1]</a>。</li>
 </ul>
-<h3 id="open-yachiyo">Open-Yachiyo：AIネイティブなデスクトップエージェントフレームワーク（GitHub 300+ stars）（2026年～現在）</h3>
-<p><strong>GitHub</strong>：<a href="https://github.com/sdyzjx/open-yachiyo">https://github.com/sdyzjx/open-yachiyo</a></p>
+<h3 id="open-yachiyo">Open-Yachiyo：デスクトップエージェント実行フレームワーク</h3>
+<p><em>コアアーキテクト（2026年～現在）| オープンソース（GitHub 300+ Stars）| <a href="https://github.com/sdyzjx/open-yachiyo">GitHub</a></em></p>
 <ul>
-<li><strong>共同アーキテクト兼コア開発者</strong>として、ReAct（Reason-Act-Observe）パラダイムをゼロから実装。Event Bus によるツール呼び出しチェーンと SSE JSON-RPC による全経路の可観測性を備え、実行中のエージェントをリアルタイムにステップ単位で確認できる。『超かぐや姫！』に着想を得た。</li>
-<li>このプロジェクトから二つの確信を得た。第一に、エージェント型コーディングの時代に AI の生産性を何倍にもするのは<em>疎結合アーキテクチャ＋トップダウン設計＋ドキュメント駆動のワークフロー</em>である。初期段階では<strong>1日 15,000 行</strong>のピーク出力を維持した。</li>
-<li>第二に、Reason-Act-Observe ループを自らの手で実装したことで、不確実な環境でエージェントがどのように意思決定を反復するのかを本当に理解できた。</li>
-<li><strong>国家級 SRTP（大学生創新訓練）</strong>プロジェクト；<strong>福州大学優秀卒業設計</strong>に選出。</li>
+<li><strong>実行ループと実行アーキテクチャ。</strong> Reason、Act、Observe（推論・行動・観察）のパラダイムを軸に、デスクトップ向けランタイムをゼロから共同設計。非同期の Event Bus によるツール呼び出しパイプラインを Server Sent Events および JSON RPC と組み合わせ、実行中のエージェントの判断について、きめ細かなステップごとの実行トレースと状態の可観測性を提供。</li>
+<li><strong>モジュール化されたシステム設計。</strong> 疎結合なツールディスパッチ層と構造化されたコンテキスト管理層を構築し、不確実な環境での複雑なエージェントワークフローに対応。機能を素早く拡張しながら、システムのモジュール性を保った。</li>
+<li><strong>学術的評価。</strong> 国家級大学生創新創業訓練計画（SRTP）プロジェクトとして採択・助成され、福州大学優秀卒業設計に選出。</li>
 </ul>
-<h3 id="インソール打ち抜きロボット">適応的エッジ検出と FSPS-BIT* によるインソール打ち抜きロボット（2023 - 2024）</h3>
-<p><strong>GitHub</strong>：<a href="https://github.com/HaoHaoRight/Robotics_of_ABB1200">https://github.com/HaoHaoRight/Robotics_of_ABB1200</a></p>
+<h3 id="edge-ai-稲害虫">Edge-AI リアルタイム稲害虫モニタリング・ロボット捕獲システム</h3>
+<p><em>筆頭著者 | Frontiers in Plant Science 掲載（IF 5.9、JCR Q1）（2024年～2026年）</em></p>
 <ul>
-<li>インソール打ち抜き用の工場向けロボットアームシステム。3次元作業空間で FSPS-BIT* 動作計画器を用い、RRT*、FMT*、Informed-RRT*、BIT* と比較評価した。</li>
-<li>FSPS-BIT* 計画器の MATLAB 実装と UR5 シミュレーション環境を担当し、論文 <a href="#pub-3">[3]</a> および登録済み発明特許 <a href="#pat-1">[P1]</a> に貢献。</li>
+<li><strong>データセットとエッジ認識パイプライン。</strong> 自然の農業環境で収集した 12 種類の害虫、計 1,500 枚の画像からなる圃場データセットを構築。Mixed Aggregation バックボーンと Ghost Conv 前処理ヘッドを備えた超軽量検出ネットワークを設計し、TensorRT で最適化して NVIDIA Jetson Xavier NX にエッジ実装。ESP32 による低消費電力駆動サブシステムと LoRa マルチノードメッシュを組み合わせた。</li>
+<li><strong>実測性能と検証。</strong> エッジハードウェア上で直接 96.1% mAP@0.5、59.4 FPS を達成し、標準的な YOLO ベースラインより推論速度を 19.6% 向上。9 種類の劣化した圃場シナリオのうち 6 種類で最高 mAP を獲得し、高いノイズ耐性を示した。閉ループ遅延は 14.8 ms、システム全体の遅延は 36.8 ms。</li>
+<li><strong>学術発表。</strong> 筆頭著者として Frontiers in Plant Science に論文を発表（2026年巻、DOI：<a href="https://doi.org/10.3389/fpls.2026.1853368">10.3389/fpls.2026.1853368</a>）。</li>
 </ul>
-<h3 id="エッジ-ai-稲害虫">エッジ AI によるリアルタイム稲害虫モニタリング・協調捕獲システム（2024 - 2026）</h3>
+<h3 id="インソール打ち抜きロボットアーム">適応的エッジ検出を用いた工業用インソール打ち抜きロボットアーム</h3>
+<p><em>ロボティクス研究者（2023年～2024年）| <a href="https://github.com/HaoHaoRight/Robotics_of_ABB1200">GitHub</a></em></p>
 <ul>
-<li>1,500枚・12クラスの実圃場データセットと、軽量な認識・デプロイパイプラインを構築（Mixed Aggregation バックボーン、Ghost Conv プレヘッド、Jetson Xavier NX 上の TensorRT、ESP32 による低消費電力駆動、LoRa マルチノードメッシュ）。</li>
-<li>エッジハードウェア上で <strong>96.1% mAP@0.5、59.4&nbsp;FPS</strong> を達成（YOLOv13 ベースライン比で精度 +0.7%、速度 +19.6%）；劣化シーン9種中6種で mAP 最高；閉ループ遅延 14.8&nbsp;ms ＋ エンドツーエンド遅延 36.8&nbsp;ms。</li>
-<li><strong>筆頭著者</strong>として <em>Frontiers in Plant Science</em>（IF 5.9、JCR Q1；Sustainable and Intelligent Phytoprotection、2026）に論文 <a href="#pub-2">[2]</a> を発表。DOI：<a href="https://doi.org/10.3389/fpls.2026.1853368">10.3389/fpls.2026.1853368</a>。</li>
+<li><strong>動作計画とシミュレーション。</strong> 工場でのインソール打ち抜き向けに、3次元作業空間で動作する FSPS-BIT* 動作計画アルゴリズムを開発し、RRT*、FMT*、Informed-RRT*、標準 BIT* などの従来手法と総合的に比較評価。</li>
+<li><strong>実装と知的財産。</strong> 中核となる MATLAB アルゴリズム実装と UR5 ロボットシミュレーション環境を担当。研究成果は共著の学術論文1本と登録済みの中国発明特許1件に直接つながった。</li>
 </ul>
 <h2 id="publications">論文</h2>
 <ol>
