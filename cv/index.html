@@ -199,14 +199,14 @@
 <li><strong>Visual verification and spatial calibration.</strong> Built an overhead monocular camera rig to establish an absolute spatial reference and correct base station drift. Mapped metric coordinates through homography from multi sheet ArUco marker grids while deploying a custom YOLO model to track robot positions from a single frame, achieving repeatability around 3 mm on markers and 22 mm on robots. This system provides visual ground truth for Lighthouse tracking while streaming refreshed affine calibration parameters to the swarm over the air.</li>
 <li><strong>Rapid system integration and deployment.</strong> Accelerated platform maturity during initial onboarding by shipping three core infrastructure milestones: overhauled the operator interface with responsive viewport mapping and live target feedback, architected a Flask REST and SSE streaming pipeline verified by automated trajectory testing, and established over the air deployment tooling to distribute runtime calibration data across the active fleet.</li>
 </ul>
-<h3 id="open-yachiyo">Open Yachiyo: Desktop Agent Execution Framework</h3>
+<h3 id="open-yachiyo">Open-Yachiyo: Desktop Agent Execution Framework</h3>
 <p><em>Core Architect (2026 to Present) | Open Source (300+ GitHub Stars) | <a href="https://github.com/sdyzjx/open-yachiyo">GitHub</a></em></p>
 <ul>
 <li><strong>Runtime loop and execution architecture.</strong> Co architected a desktop runtime from scratch around the Reason, Act, and Observe paradigm. Designed an asynchronous Event Bus tool calling pipeline coupled with Server Sent Events and JSON RPC to provide granular, step by step execution traces and state observability for in flight agent decisions.</li>
 <li><strong>Modular system design.</strong> Engineered decoupled tool dispatch and structured context management layers to handle complex agentic workflows under uncertain environments, sustaining rapid feature scaling while maintaining clean system modularity.</li>
 <li><strong>Academic recognition.</strong> Funded as a National College Students Innovation and Entrepreneurship Project (SRTP) and selected as a Fuzhou University Outstanding Graduation Design.</li>
 </ul>
-<h3 id="edge-ai-rice-pest">Edge AI Real Time Rice Pest Monitoring and Robotic Trapping System</h3>
+<h3 id="edge-ai-rice-pest">Edge-AI Real-time Rice-Pest Monitoring and Robotic Trapping System</h3>
 <p><em>First Author | Published in Frontiers in Plant Science (IF 5.9, JCR Q1) (2024 to 2026)</em></p>
 <ul>
 <li><strong>Dataset and edge perception pipeline.</strong> Constructed a field dataset of 1,500 images across 12 distinct pest categories collected in natural agricultural environments. Designed an ultra lightweight detection network featuring a Mixed Aggregation backbone and Ghost Conv pre processing head, optimized via TensorRT for edge deployment on the NVIDIA Jetson Xavier NX alongside an ESP32 low power actuation subsystem and LoRa multi node mesh.</li>
