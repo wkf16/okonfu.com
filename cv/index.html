@@ -179,58 +179,58 @@
 <strong>Website</strong>: <a href="https://okonfu.com">https://okonfu.com</a><br>
 <strong>GitHub</strong>: <a href="https://github.com/wkf16">https://github.com/wkf16</a></p>
 <h2 id="education">Education</h2>
-<h3 id="fuzhou-university">Fuzhou University*, B.Eng. in Electronic Information Engineering (Jun 2026, Expected)</h3>
+<h3 id="fuzhou-university">Fuzhou University | B.Eng. in Electronic Information Engineering (Expected Jun 2026)</h3>
+<p><em>National Project 211 and Double First Class University</em></p>
 <ul>
-<li>GPA: 3.18/4.0 (Top 22% in major cohort).</li>
-<li>Selected coursework: Electromagnetic Field and Wave (91), C Programming (98), OOP (90), Java (95), Computer Networks (97), Microprocessor Principles (91), Discrete Signal Processing (99), Digital Image Processing (95).</li>
+<li><strong>Academic Standing:</strong> GPA 3.18 / 4.0 (Top 22% in major cohort).</li>
+<li><strong>Selected Coursework:</strong> Discrete Signal Processing (99), C Programming (98), Computer Networks (97), Java Programming (95), Digital Image Processing (95), Microprocessor Principles (91), Electromagnetic Field and Wave (91), Object Oriented Programming (90).</li>
 </ul>
-<p><small>* Fuzhou University (Chinese Project 211 / Double First-Class).</small></p>
 <h2 id="skills">Skills</h2>
 <ul>
-<li><strong>Languages</strong>: TOEFL iBT 82 (2025; MyBest 85), JLPT N1 (full score in reading).</li>
-<li><strong>Programming and Systems</strong>: C/C++, Python, MATLAB, Java, TypeScript, Node.js, CUDA, WebSocket, JSON-RPC, Flask + Socket.IO.</li>
-<li><strong>Hardware and Embedded</strong>: STM32, ESP32, Arduino, Verilog/FPGA; PCB design, signal-chain and circuit debugging.</li>
+<li><strong>Languages:</strong> TOEFL iBT 82 (MyBest 85), JLPT N1 (Perfect score in Reading).</li>
+<li><strong>Programming and Systems:</strong> C, C++, Python, MATLAB, Java, TypeScript, Node.js, CUDA, Linux, Flask, Socket.IO, WebSocket, JSON RPC.</li>
+<li><strong>Embedded and Hardware:</strong> STM32, ESP32, Nordic nRF52 series, Arduino, Verilog, FPGA, KiCad PCB layout, signal chain analysis, circuit debugging.</li>
 </ul>
-<h2 id="top-project-achievements">Top Project Achievements</h2>
-<h3 id="atomic-swarm-robot-platform">ATOMIC Swarm Robot Platform - HKUST(GZ) ATOMIC Lab (Research Assistant) (May 2026 - present)</h3>
+<h2 id="research-and-engineering-projects">Research and Engineering Projects</h2>
+<h3 id="atomic-swarm-robot-platform">ATOMIC Swarm Robot Platform | HKUST(GZ) ATOMIC Lab</h3>
+<p><em>Research Assistant (May 2026 to Present)</em></p>
 <ul>
-<li>End-to-end swarm stack ownership across 4 layers: KiCad PCBs, 3D-printed housings, C firmware on nRF52833, Flask + Socket.IO web host. Indoor localization via HTC Vive Lighthouse v1 + TS4231 photodiodes, 50&nbsp;Hz pose broadcast on bare-RADIO 2.4&nbsp;GHz adv (no SoftDevice; firmware fits in 128&nbsp;KB).</li>
-<li>Designed and prototyped a monocular vision calibration &amp; ground-truth rig: an ArUco quad-sheet anchors a metric world frame via homography (three more sheets extend coverage and catch base-station drift) and a YOLO detector localizes the robot, recovering world coordinates from one overhead photo. Single-frame repeatability &asymp;3&nbsp;mm on markers, &asymp;22&nbsp;mm on the robot. Double duty: a vision ground truth for Lighthouse accuracy, and the source of a refreshed affine calibration fed to the swarm over the existing OTA channel.</li>
-<li>Shipped three PRs in onboarding sprint: <code>#18 fix/webUI</code> (viewport-fit map + target feedback), <code>#19 feat/api</code> (Flask REST/SSE API: POST target, GET pose stream, validated by automated trajectory test), <code>#20 feat/ota</code> (OTA affine-calibration push + status-broadcast scaffold + recalibration tooling).</li>
+<li><strong>Full stack swarm robotics infrastructure.</strong> Owned the complete swarm platform across four distinct layers: custom KiCad printed circuits, 3D printed mechanical housings, bare metal C firmware on the nRF52833, and a Flask web host powered by Socket.IO. Implemented indoor localization pairing HTC Vive Lighthouse stations with TS4231 optical sensors, broadcasting 50 Hz pose streams via direct 2.4 GHz radio packets without SoftDevice overhead to compress total firmware within 128 KB.</li>
+<li><strong>Visual verification and spatial calibration.</strong> Built an overhead monocular camera rig to establish an absolute spatial reference and correct base station drift. Mapped metric coordinates through homography from multi sheet ArUco marker grids while deploying a custom YOLO model to track robot positions from a single frame, achieving repeatability around 3 mm on markers and 22 mm on robots. This system provides visual ground truth for Lighthouse tracking while streaming refreshed affine calibration parameters to the swarm over the air.</li>
+<li><strong>Rapid system integration and deployment.</strong> Accelerated platform maturity during initial onboarding by shipping three core infrastructure milestones: overhauled the operator interface with responsive viewport mapping and live target feedback, architected a Flask REST and SSE streaming pipeline verified by automated trajectory testing, and established over the air deployment tooling to distribute runtime calibration data across the active fleet.</li>
 </ul>
-<h3 id="open-yachiyo">Open-Yachiyo: AI-native desktop agent framework (300+ GitHub stars) (2026 - present)</h3>
-<p><strong>GitHub</strong>: <a href="https://github.com/sdyzjx/open-yachiyo">https://github.com/sdyzjx/open-yachiyo</a></p>
+<h3 id="open-yachiyo">Open Yachiyo: Desktop Agent Execution Framework</h3>
+<p><em>Core Architect (2026 to Present) | Open Source (300+ GitHub Stars) | <a href="https://github.com/sdyzjx/open-yachiyo">GitHub</a></em></p>
 <ul>
-<li><strong>Co-architect and core developer</strong> of a from-scratch implementation of the ReAct (Reason-Act-Observe) paradigm, with an Event Bus tool-calling chain and SSE JSON-RPC full-link observability for live, step-through inspection of in-flight agent runs; inspired by 『超かぐや姫！』.</li>
-<li>The project produced two convictions. First, in the agentic-coding era the multiplier for AI productivity is <em>decoupled architecture + top-down design + documentation-driven workflow</em>; during the early phase it sustained a peak output of <strong>15,000 lines/day</strong>.</li>
-<li>Second, implementing the Reason-Act-Observe loop hands-on gave a genuine understanding of how an agent iterates decisions in uncertain environments.</li>
-<li><strong>National-level SRTP</strong> project; selected as <strong>Fuzhou University Outstanding Graduation Design</strong>.</li>
+<li><strong>Runtime loop and execution architecture.</strong> Co architected a desktop runtime from scratch around the Reason, Act, and Observe paradigm. Designed an asynchronous Event Bus tool calling pipeline coupled with Server Sent Events and JSON RPC to provide granular, step by step execution traces and state observability for in flight agent decisions.</li>
+<li><strong>Modular system design.</strong> Engineered decoupled tool dispatch and structured context management layers to handle complex agentic workflows under uncertain environments, sustaining rapid feature scaling while maintaining clean system modularity.</li>
+<li><strong>Academic recognition.</strong> Funded as a National College Students Innovation and Entrepreneurship Project (SRTP) and selected as a Fuzhou University Outstanding Graduation Design.</li>
 </ul>
-<h3 id="insole-blanking-robot">Insole blanking robot with adaptive edge detection and FSPS-BIT* (2023 - 2024)</h3>
-<p><strong>GitHub</strong>: <a href="https://github.com/HaoHaoRight/Robotics_of_ABB1200">https://github.com/HaoHaoRight/Robotics_of_ABB1200</a></p>
+<h3 id="edge-ai-rice-pest">Edge AI Real Time Rice Pest Monitoring and Robotic Trapping System</h3>
+<p><em>First Author | Published in Frontiers in Plant Science (IF 5.9, JCR Q1) (2024 to 2026)</em></p>
 <ul>
-<li>A factory robotic-arm system for insole blanking with an FSPS-BIT* motion planner in 3-D operating space, benchmarked against RRT*, FMT*, Informed-RRT*, and BIT*.</li>
-<li>Owned MATLAB implementation of the FSPS-BIT* planner and the UR5 simulation scene, contributing to the paper <a href="#pub-2">[2]</a> and the granted invention patent <a href="#pub-4">[4]</a>.</li>
+<li><strong>Dataset and edge perception pipeline.</strong> Constructed a field dataset of 1,500 images across 12 distinct pest categories collected in natural agricultural environments. Designed an ultra lightweight detection network featuring a Mixed Aggregation backbone and Ghost Conv pre processing head, optimized via TensorRT for edge deployment on the NVIDIA Jetson Xavier NX alongside an ESP32 low power actuation subsystem and LoRa multi node mesh.</li>
+<li><strong>Empirical performance and validation.</strong> Achieved 96.1% mAP at 0.5 with 59.4 FPS directly on edge hardware, boosting inference speed by 19.6% over the standard YOLO baseline. Demonstrated superior noise robustness by securing the highest mAP in 6 out of 9 degraded field scenarios, with a closed loop latency of 14.8 ms and complete system latency of 36.8 ms.</li>
+<li><strong>Scholarly publication.</strong> Published as first author in Frontiers in Plant Science (Volume 2026, DOI: <a href="https://doi.org/10.3389/fpls.2026.1853368">10.3389/fpls.2026.1853368</a>).</li>
 </ul>
-<h3 id="edge-ai-rice-pest">Edge-AI Real-time Rice-Pest Monitoring and Collaborative Trapping System (2024 - 2026)</h3>
+<h3 id="insole-blanking-robot">Industrial Robotic Arm for Insole Blanking with Adaptive Edge Detection</h3>
+<p><em>Robotics Researcher (2023 to 2024) | <a href="https://github.com/HaoHaoRight/Robotics_of_ABB1200">GitHub</a></em></p>
 <ul>
-<li>Built a 1,500-image, 12-class real-field dataset and a lightweight perception/deployment pipeline (Mixed Aggregation backbone, Ghost Conv pre-head, TensorRT on Jetson Xavier NX, ESP32 low-power actuation, LoRa multi-node mesh).</li>
-<li>Achieves <strong>96.1% mAP@0.5 at 59.4&nbsp;FPS</strong> on edge hardware (+0.7% accuracy, +19.6% speed vs. YOLOv13 baseline); top mAP in 6/9 degraded-scene tests; 14.8&nbsp;ms closed-loop + 36.8&nbsp;ms end-to-end latency.</li>
-<li><strong>First author</strong> on the published article <a href="#pub-1">[1]</a> in <em>Frontiers in Plant Science</em> (IF 5.9, JCR Q1; Sustainable and Intelligent Phytoprotection, 2026), DOI: <a href="https://doi.org/10.3389/fpls.2026.1853368">10.3389/fpls.2026.1853368</a>.</li>
+<li><strong>Motion planning and simulation.</strong> Developed the FSPS BIT* motion planning algorithm operating within a 3D workspace for factory insole blanking, benchmarked comprehensively against traditional planners including RRT*, FMT*, Informed RRT*, and standard BIT*.</li>
+<li><strong>Implementation and intellectual property.</strong> Owned the core MATLAB algorithmic implementation and the UR5 robotic simulation environment. Research outcomes directly contributed to a co authored academic paper and a granted Chinese invention patent.</li>
 </ul>
-<h2 id="publications-and-patents">Publications and Patents</h2>
+<h2 id="publications">Publications</h2>
 <ol>
-<li id="pub-1"><strong>Wang, K.</strong>, Guo, S., Yang, X., Lin, B., Cai, W., Tang, R., Lin, J. &ldquo;An integrated edge AI prototype for smart agriculture: real-time pest detection, physical trapping, and multi-node deployment analysis under field uncertainty.&rdquo; <em>Frontiers in Plant Science</em>, 17, 1853368, 2026. DOI: <a href="https://doi.org/10.3389/fpls.2026.1853368">10.3389/fpls.2026.1853368</a>.</li>
-<li id="pub-2">Tang, R., <strong>Wang, K.</strong>, Lin, H., Huang, L., Mou, G., Guo, S. &ldquo;A framework of insole blanking robot based on adaptive edge detection and FSPS-BIT* path planning.&rdquo; <em>Scientific Reports</em> (JCR Q1), 2024. DOI: <a href="https://doi.org/10.1038/s41598-024-71636-4">10.1038/s41598-024-71636-4</a>.</li>
-<li id="pub-3">Lin, J., Wu, Z., <strong>Wang, K.</strong>, et al. &ldquo;Cascade residual-optimized image super-resolution reconstruction in Transformer network.&rdquo; <em>Optics and Precision Engineering</em>, 2024. DOI: <a href="https://doi.org/10.37188/OPE.20243212.1902">10.37188/OPE.20243212.1902</a>.</li>
-<li id="pub-4">Mou, G., <strong>Wang, K.</strong>, Tang, R., Liu, W., Huang, L., Guo, S. <em>Insole Blanking Robot System with Adaptive Edge Detection and Path Planning.</em> China Invention Patent <strong>CN118181403B</strong> (Granted 2025; PI as 1st inventor).</li>
-<li id="pub-5">Liao, Y., <strong>Wang, K.</strong>, Yan, X. <em>Subpixel-Edge Method for Circular-Hole Localization and Deformation Detection in Stamped Parts.</em> China Invention Patent <strong>CN116542910B</strong> (Granted 2025; PI as 1st inventor).</li>
+<li id="pub-1"><strong>K. Wang</strong>, P. Li, Y. Gao, J. Liu, J. Dai, T. Chang. &ldquo;Demo: Swarm Chess &mdash; Grounding LLM Agents in a Physical Robot Swarm.&rdquo; <em>International Conference on Embedded Wireless Systems and Networks (EWSN 2026)</em>, Dresden, Germany, 2026. <strong>Oral demo presentation.</strong> DOI: <a href="https://doi.org/10.3217/fvzd-jx74">10.3217/fvzd-jx74</a></li>
+<li id="pub-2"><strong>K. Wang</strong>, S. Guo, X. Yang, B. Lin, W. Cai, R. Tang, J. Lin. &ldquo;An integrated edge AI prototype for smart agriculture: real-time pest detection, physical trapping, and multi-node deployment analysis under field uncertainty.&rdquo; <em>Frontiers in Plant Science</em>, vol. 17, art. 1853368, 2026. DOI: <a href="https://doi.org/10.3389/fpls.2026.1853368">10.3389/fpls.2026.1853368</a></li>
+<li id="pub-3">R. Tang, <strong>K. Wang</strong>, H. Lin, L. Huang, G. Mou, S. Guo. &ldquo;A framework of insole blanking robot based on adaptive edge detection and FSPS-BIT* path planning.&rdquo; <em>Scientific Reports</em>, 2024. DOI: <a href="https://doi.org/10.1038/s41598-024-71636-4">10.1038/s41598-024-71636-4</a></li>
+<li id="pub-4">J. Lin, Z. Wu, <strong>K. Wang</strong>, et al. &ldquo;Cascade residual-optimized image super-resolution reconstruction in Transformer network.&rdquo; <em>Optics and Precision Engineering</em>, 2024. DOI: <a href="https://doi.org/10.37188/OPE.20243212.1902">10.37188/OPE.20243212.1902</a></li>
 </ol>
-<h2 id="presentations">Presentations</h2>
-<ul>
-<li><strong>Oral demo presentation</strong>, EWSN 2026 (23rd International Conference on Embedded Wireless Systems and Networks), Dresden, Germany, Sep 2026.<br>
-Wang, K., Li, P., Gao, Y., Liu, J., Dai, J., Chang, T. &ldquo;Demo: Swarm Chess &mdash; Grounding LLM Agents in a Physical Robot Swarm.&rdquo; DOI: <a href="https://doi.org/10.3217/fvzd-jx74">10.3217/fvzd-jx74</a>.</li>
-</ul>
+<h2 id="patents">Patents</h2>
+<ol style="list-style:none;padding-left:0">
+<li id="pat-1">[P1] G. Mou, <strong>K. Wang</strong>, R. Tang, W. Liu, L. Huang, S. Guo. <em>Insole Blanking Robot System with Adaptive Edge Detection and Path Planning.</em> China Invention Patent CN118181403B, granted 2025 (PI as first inventor).</li>
+<li id="pat-2">[P2] Y. Liao, <strong>K. Wang</strong>, X. Yan. <em>Subpixel-Edge Method for Circular-Hole Localization and Deformation Detection in Stamped Parts.</em> China Invention Patent CN116542910B, granted 2025 (PI as first inventor).</li>
+</ol>
 <h2 id="honors-and-awards">Honors and Awards</h2>
 <h3 id="ti-cup">Texas Instruments Cup National Undergraduate Electronic Design Contest, National Second Prize (2023)</h3>
 <ul>
